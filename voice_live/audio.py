@@ -160,6 +160,10 @@ class AudioManager:
                     logger.error(f"Mic capture error: {e}")
                 break
 
+    def is_playing(self) -> bool:
+        """Return True if the playback queue has pending audio chunks."""
+        return not self._playback_queue.empty()
+
     def play_audio(self, audio_bytes: bytes) -> None:
         """Enqueue audio bytes for playback (non-blocking)."""
         if self._running and not self._interrupted.is_set():

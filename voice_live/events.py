@@ -34,6 +34,7 @@ class EventDispatcher:
         self._on_audio_delta: Optional[Callable[[bytes], None]] = None
         self._on_speech_started: Optional[Callable[[], Awaitable[None]]] = None
         self._on_response_done: Optional[Callable[[], Awaitable[None]]] = None
+        self._transcript_task: Optional[asyncio.Task] = None
 
     def on_transcript(self, handler: Callable[[str], Awaitable[None]]) -> None:
         """Register handler for completed STT transcripts."""
@@ -50,6 +51,12 @@ class EventDispatcher:
     def on_response_done(self, handler: Callable[[], Awaitable[None]]) -> None:
         """Register handler for server response completion."""
         self._on_response_done = handler
+
+    def cancel_transcript_task(self) -> None:
+        """Cancel the currently running transcript handler task, if any."""
+        if self._transcript_task and not self._transcript_task.done():
+            self._transcript_task.cancel()
+            self._transcript_task = None
 
     async def run(self, conn: VoiceLiveConnection) -> None:
         """Main event loop — receive and dispatch Azure Voice Live server events.
@@ -97,7 +104,11 @@ class EventDispatcher:
                 transcript = event.transcript
                 logger.info(f"STT transcript: {transcript!r}")
                 if self._on_transcript:
-                    asyncio.create_task(self._on_transcript(transcript))
+                    # Cancel previous transcript task to prevent stale handlers
+                    # from racing with the new one after a barge-in.
+                    if self._transcript_task and not self._transcript_task.done():
+                        self._transcript_task.cancel()
+                    self._transcript_task = asyncio.create_task(self._on_transcript(transcript))
 
             elif event.type == ServerEventType.CONVERSATION_ITEM_INPUT_AUDIO_TRANSCRIPTION_DELTA:
                 logger.debug(f"STT partial: {event.delta!r}")

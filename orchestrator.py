@@ -25,8 +25,6 @@ Concurrency model:
 import asyncio
 import logging
 import time
-from typing import Optional
-
 from azure.ai.voicelive.aio import VoiceLiveConnection
 
 from voice_live.session import trigger_tts
@@ -61,7 +59,8 @@ class Orchestrator:
         self._audio = audio
         self._dispatcher = EventDispatcher()
         self._processing = False  # True while handling a turn
-        self._current_task: Optional[asyncio.Task] = None
+        self._turn_id = 0  # monotonically increasing turn counter
+        self._tts_turn_id = 0  # turn_id of the most recently triggered TTS
         self._barge_in_event = asyncio.Event()
 
         # Wire up event handlers
@@ -77,6 +76,7 @@ class Orchestrator:
 
         # Proactive greeting on launch
         self._processing = True
+        self._tts_turn_id = self._turn_id
         await trigger_tts(self._conn, self.GREETING)
         logger.info("[PIPELINE] Greeting TTS triggered")
 
@@ -92,17 +92,20 @@ class Orchestrator:
             logger.debug("Empty transcript, skipping")
             return
 
+        self._turn_id += 1
+        my_turn = self._turn_id
+
         self._processing = True
         self._barge_in_event.clear()
         self._audio.resume()  # ensure playback is allowed after any prior interrupt
         t_start = time.perf_counter()
-        logger.info(f"[STT] Transcript received: {transcript!r}")
+        logger.info(f"[STT] Transcript received (turn {my_turn}): {transcript!r}")
         logger.info(f"[PIPELINE] Routing to LangGraph agent")
 
         try:
             full_response = ""
             async for token in stream_agent(transcript):
-                if self._barge_in_event.is_set():
+                if self._barge_in_event.is_set() or self._turn_id != my_turn:
                     logger.info("[PIPELINE] Barge-in detected during LangGraph streaming, aborting")
                     return
                 full_response += token
@@ -114,10 +117,11 @@ class Orchestrator:
             )
 
             # Check barge-in one more time before triggering TTS
-            if self._barge_in_event.is_set():
+            if self._barge_in_event.is_set() or self._turn_id != my_turn:
                 logger.info("[PIPELINE] Barge-in detected before TTS trigger, aborting")
                 return
 
+            self._tts_turn_id = my_turn
             await trigger_tts(self._conn, full_response)
             logger.info(f"[TTS] Triggered ({time.perf_counter() - t_start:.2f}s total pipeline)")
 
@@ -126,20 +130,24 @@ class Orchestrator:
         except Exception as e:
             logger.error(f"[PIPELINE] Error: {e}", exc_info=True)
         finally:
-            if not self._barge_in_event.is_set():
+            # Only maintain processing state if this is still the active turn
+            if self._turn_id == my_turn and not self._barge_in_event.is_set():
                 pass  # _processing cleared by _handle_response_done
             else:
                 self._processing = False
 
     async def _handle_barge_in(self) -> None:
         """Handle user interruption — cancel server response and local playback."""
-        if not self._processing:
+        if not self._processing and not self._audio.is_playing():
             return
         logger.info("[BARGE-IN] User interrupted — cancelling response and clearing buffers")
-        # Signal processing to abort
+        # Signal processing to abort and invalidate the current turn
         self._barge_in_event.set()
+        self._turn_id += 1
         # Stop local audio immediately
         self._audio.interrupt()
+        # Cancel the in-flight transcript handler task
+        self._dispatcher.cancel_transcript_task()
         # Cancel server-side response (may be a no-op if LangGraph still running)
         try:
             await self._conn.response.cancel()
@@ -153,7 +161,14 @@ class Orchestrator:
         logger.info("[BARGE-IN] Interruption handled — ready for new input")
 
     async def _handle_response_done(self) -> None:
-        """Handle response completion."""
+        """Handle response completion.
+
+        Guards against stale RESPONSE_DONE events from cancelled responses
+        overwriting the state of a newer turn.
+        """
+        if self._turn_id != self._tts_turn_id:
+            logger.debug("[PIPELINE] Stale response_done (turn moved on), ignoring")
+            return
         self._processing = False
         self._audio.resume()
         logger.info("[PIPELINE] Turn complete — ready for next input")

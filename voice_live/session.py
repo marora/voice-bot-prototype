@@ -76,7 +76,9 @@ def _build_session_config() -> RequestSession:
             language=config.STT_LANGUAGE,
         ),
         input_audio_echo_cancellation=AudioEchoCancellation(),
-        input_audio_noise_reduction=AudioNoiseReduction(),
+        input_audio_noise_reduction=AudioNoiseReduction(
+            type="azure_deep_noise_suppression",
+        ),
         tools=[],  # No function tools
     )
 
