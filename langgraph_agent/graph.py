@@ -80,10 +80,10 @@ Specialists: {', '.join(MEMBERS)}
 """
 
 
-def _supervisor(state: MessagesState) -> dict:
+async def _supervisor(state: MessagesState) -> dict:
     """Route to the appropriate sub-agent."""
     messages = [SystemMessage(content=_SUPERVISOR_PROMPT)] + state["messages"]
-    response = _supervisor_llm.invoke(messages)
+    response = await _supervisor_llm.ainvoke(messages)
     route = response.content.strip().lower()
     logger.info(f"Supervisor routed to: {route}")
     return {"messages": state["messages"], "_route": route}
@@ -96,24 +96,24 @@ def _route_from_supervisor(state: dict) -> str:
     return "general"
 
 
-def _search_node(state: MessagesState) -> dict:
-    result = _search_agent.invoke({"messages": state["messages"]})
+async def _search_node(state: MessagesState) -> dict:
+    result = await _search_agent.ainvoke({"messages": state["messages"]})
     return {"messages": result["messages"][-1:]}
 
 
-def _calc_node(state: MessagesState) -> dict:
-    result = _calc_agent.invoke({"messages": state["messages"]})
+async def _calc_node(state: MessagesState) -> dict:
+    result = await _calc_agent.ainvoke({"messages": state["messages"]})
     return {"messages": result["messages"][-1:]}
 
 
-def _weather_node(state: MessagesState) -> dict:
-    result = _weather_agent.invoke({"messages": state["messages"]})
+async def _weather_node(state: MessagesState) -> dict:
+    result = await _weather_agent.ainvoke({"messages": state["messages"]})
     return {"messages": result["messages"][-1:]}
 
 
-def _general_node(state: MessagesState) -> dict:
+async def _general_node(state: MessagesState) -> dict:
     llm = _create_llm()
-    response = llm.invoke(state["messages"])
+    response = await llm.ainvoke(state["messages"])
     return {"messages": [response]}
 
 

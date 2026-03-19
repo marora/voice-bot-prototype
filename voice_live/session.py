@@ -66,7 +66,7 @@ def _build_session_config() -> RequestSession:
         output_audio_format=OutputAudioFormat.PCM16,
         turn_detection=AzureSemanticVad(
             create_response=False,  # CRITICAL: disable auto-LLM
-            threshold=0.5,
+            threshold=0.7,
             prefix_padding_ms=300,
             silence_duration_ms=500,
             remove_filler_words=True,
@@ -77,7 +77,7 @@ def _build_session_config() -> RequestSession:
         ),
         input_audio_echo_cancellation=AudioEchoCancellation(),
         input_audio_noise_reduction=AudioNoiseReduction(
-            type="azure_deep_noise_suppression",
+            type="near_field",
         ),
         tools=[],  # No function tools
     )

@@ -23,11 +23,21 @@ from voice_live.session import create_session
 from voice_live.audio import AudioManager
 from orchestrator import Orchestrator
 
+_LOG_FMT = "%(asctime)s [%(name)-25s] %(levelname)-7s %(filename)s:%(lineno)d — %(message)s"
+_LOG_DATEFMT = "%H:%M:%S"
+
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [%(name)-25s] %(levelname)-7s %(filename)s:%(lineno)d — %(message)s",
-    datefmt="%H:%M:%S",
+    format=_LOG_FMT,
+    datefmt=_LOG_DATEFMT,
 )
+
+# Also log to a rotating file so sessions can be reviewed after the fact.
+_file_handler = logging.FileHandler("voicebot.log", mode="a", encoding="utf-8")
+_file_handler.setLevel(logging.DEBUG)
+_file_handler.setFormatter(logging.Formatter(_LOG_FMT, datefmt=_LOG_DATEFMT))
+logging.getLogger().addHandler(_file_handler)
+
 logger = logging.getLogger("voicebot.main")
 
 # Reduce noise from dependencies
