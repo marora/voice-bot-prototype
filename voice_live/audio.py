@@ -35,14 +35,29 @@ CHANNELS = config.CHANNELS
 RATE = config.SAMPLE_RATE
 CHUNK_SIZE = config.chunk_size  # samples per frame (e.g. 1200 for 50 ms)
 
+# Module-level reference keeps the ctypes callback alive for the process
+# lifetime.  Without this, the callback object is garbage-collected after
+# _suppress_alsa_errors() returns, leaving ALSA with a dangling function
+# pointer that causes a segmentation fault the next time it fires.
+_ALSA_ERROR_HANDLER_CB = None
+
 
 def _suppress_alsa_errors():
-    """Redirect ALSA/JACK stderr noise during PortAudio init."""
+    """Redirect ALSA/JACK stderr noise during PortAudio init.
+
+    The ctypes callback *must* be kept alive at module level; storing it only
+    as a local variable causes it to be garbage-collected, which leaves ALSA
+    holding a dangling pointer and leads to a segmentation fault.
+    """
+    global _ALSA_ERROR_HANDLER_CB
     try:
         asound = ctypes.cdll.LoadLibrary("libasound.so.2")
-        c_error_handler = ctypes.CFUNCTYPE(None, ctypes.c_char_p, ctypes.c_int,
-                                           ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p)
-        asound.snd_lib_error_set_handler(c_error_handler(lambda *_: None))
+        c_error_handler_type = ctypes.CFUNCTYPE(
+            None, ctypes.c_char_p, ctypes.c_int,
+            ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p,
+        )
+        _ALSA_ERROR_HANDLER_CB = c_error_handler_type(lambda *_: None)
+        asound.snd_lib_error_set_handler(_ALSA_ERROR_HANDLER_CB)
     except OSError:
         pass  # libasound not available — nothing to suppress
 
