@@ -39,6 +39,7 @@ logger = logging.getLogger("voicebot.orchestrator")
 _SENTENCE_END = re.compile(r'[.!?;]\s|[.!?;]$|\n')
 _MAX_CHUNK_CHARS = 200
 _MIN_CHUNK_CHARS = 10
+_BARGE_IN_DEBOUNCE_SECS = 1.5
 
 
 class Orchestrator:
@@ -69,7 +70,9 @@ class Orchestrator:
         self._tts_turn_id = 0  # turn_id of the most recently triggered TTS
         self._pending_tts_count = 0  # in-flight TTS chunks awaiting RESPONSE_DONE
         self._barge_in_event = asyncio.Event()
-        self._tts_slot = asyncio.Semaphore(1)  # guards sequential trigger_tts() calls
+        self._response_done = asyncio.Event()
+        self._response_done.set()  # Initially ready — no TTS in flight
+        self._tts_playback_started_at: float = 0.0
 
         # Wire up event handlers
         self._dispatcher.on_transcript(self._handle_transcript)
@@ -78,6 +81,7 @@ class Orchestrator:
         def _audio_with_log(data: bytes):
             if not self._first_audio_logged:
                 self._first_audio_logged = True
+                self._tts_playback_started_at = time.monotonic()
                 logger.info("[PLAYBACK] First audio delta received — playback starting")
             self._audio.play_audio(data)
 
@@ -94,7 +98,7 @@ class Orchestrator:
         self._processing = True
         self._tts_turn_id = self._turn_id
         self._pending_tts_count = 1
-        await self._tts_slot.acquire()
+        self._response_done.clear()  # Block subsequent TTS until greeting completes
         await trigger_tts(self._conn, self.GREETING)
         logger.info("[PIPELINE] Greeting TTS triggered")
 
@@ -191,17 +195,18 @@ class Orchestrator:
     async def _flush_chunk(
         self, text: str, index: int, my_turn: int, t_start: float
     ) -> bool:
-        """Acquire the TTS slot, send a chunk, and return True on success.
+        """Wait for any in-flight TTS to complete, then send the next chunk.
 
         Returns False (and does not send) if a barge-in occurred or
-        the turn has moved on while waiting for the slot.
+        the turn has moved on while waiting for the previous RESPONSE_DONE.
         """
-        self._pending_tts_count += 1
         self._tts_turn_id = my_turn
-        await self._tts_slot.acquire()
+        # Wait for previous TTS RESPONSE_DONE before sending next chunk
+        await self._response_done.wait()
         if self._barge_in_event.is_set() or self._turn_id != my_turn:
-            self._tts_slot.release()
             return False
+        self._response_done.clear()  # Block until this chunk's RESPONSE_DONE
+        self._pending_tts_count += 1  # Count AFTER successful gate
         logger.info(
             f"[CHUNK {index}] TTS triggered at +{time.perf_counter() - t_start:.2f}s "
             f"({len(text)} chars): {text[:80]}..."
@@ -211,18 +216,25 @@ class Orchestrator:
 
     async def _handle_barge_in(self) -> None:
         """Handle user interruption — cancel server response and local playback."""
+        # Suppress speech_started within debounce window after TTS begins
+        if self._tts_playback_started_at > 0 and (
+            time.monotonic() - self._tts_playback_started_at < _BARGE_IN_DEBOUNCE_SECS
+        ):
+            logger.debug(
+                "[BARGE-IN] Suppressed — within %.1fs debounce window after TTS start",
+                _BARGE_IN_DEBOUNCE_SECS,
+            )
+            return
         if not self._processing and not self._audio.is_playing():
             return
+        self._tts_playback_started_at = 0.0
         logger.info("[BARGE-IN] User interrupted — cancelling response and clearing buffers")
         # Signal processing to abort and invalidate the current turn
         self._barge_in_event.set()
         self._turn_id += 1
         self._pending_tts_count = 0
-        # Release the TTS slot so nothing blocks forever
-        try:
-            self._tts_slot.release()
-        except ValueError:
-            pass  # already released
+        # Unblock any waiting _flush_chunk so it can see the barge-in and abort
+        self._response_done.set()
         # Stop local audio immediately
         self._audio.interrupt()
         # Cancel the in-flight transcript handler task
@@ -248,14 +260,12 @@ class Orchestrator:
         """
         if self._turn_id != self._tts_turn_id:
             logger.debug("[PIPELINE] Stale response_done (turn moved on), ignoring")
+            self._response_done.set()  # Unblock any waiter
             return
         self._pending_tts_count = max(0, self._pending_tts_count - 1)
-        # Release the TTS slot so the next chunk can fire
-        try:
-            self._tts_slot.release()
-        except ValueError:
-            pass  # already released (e.g. greeting or barge-in reset)
+        self._response_done.set()  # Allow next chunk
         if self._pending_tts_count == 0:
+            self._tts_playback_started_at = 0.0
             self._processing = False
             self._audio.resume()
             logger.info("[PIPELINE] All TTS chunks complete — ready for next input")
