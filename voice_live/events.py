@@ -134,7 +134,13 @@ class EventDispatcher:
                     await self._on_response_done()
 
             elif event.type == ServerEventType.ERROR:
-                logger.error(f"Voice Live error: {event.error}")
+                error_msg = str(event.error)
+                # Expected non-critical errors during barge-in and TTS overlap
+                _expected = ("response_cancel_not_active", "already_has_active_response")
+                if any(code in error_msg.lower() for code in _expected):
+                    logger.debug(f"Voice Live expected error (non-critical): {event.error}")
+                else:
+                    logger.error(f"Voice Live error: {event.error}")
 
             else:
                 logger.debug(f"Unhandled event: {event.type}")

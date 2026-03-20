@@ -24,6 +24,7 @@ Concurrency model:
 """
 import asyncio
 import logging
+import re
 import time
 from azure.ai.voicelive.aio import VoiceLiveConnection
 
@@ -33,6 +34,11 @@ from voice_live.events import EventDispatcher
 from langgraph_agent import stream_agent
 
 logger = logging.getLogger("voicebot.orchestrator")
+
+# Sentence-boundary chunking constants for progressive TTS
+_SENTENCE_END = re.compile(r'[.!?;]\s|[.!?;]$|\n')
+_MAX_CHUNK_CHARS = 200
+_MIN_CHUNK_CHARS = 10
 
 
 class Orchestrator:
@@ -61,11 +67,21 @@ class Orchestrator:
         self._processing = False  # True while handling a turn
         self._turn_id = 0  # monotonically increasing turn counter
         self._tts_turn_id = 0  # turn_id of the most recently triggered TTS
+        self._pending_tts_count = 0  # in-flight TTS chunks awaiting RESPONSE_DONE
         self._barge_in_event = asyncio.Event()
+        self._tts_slot = asyncio.Semaphore(1)  # guards sequential trigger_tts() calls
 
         # Wire up event handlers
         self._dispatcher.on_transcript(self._handle_transcript)
-        self._dispatcher.on_audio_delta(self._audio.play_audio)
+        self._first_audio_logged = False
+
+        def _audio_with_log(data: bytes):
+            if not self._first_audio_logged:
+                self._first_audio_logged = True
+                logger.info("[PLAYBACK] First audio delta received — playback starting")
+            self._audio.play_audio(data)
+
+        self._dispatcher.on_audio_delta(_audio_with_log)
         self._dispatcher.on_speech_started(self._handle_barge_in)
         self._dispatcher.on_response_done(self._handle_response_done)
 
@@ -77,6 +93,8 @@ class Orchestrator:
         # Proactive greeting on launch
         self._processing = True
         self._tts_turn_id = self._turn_id
+        self._pending_tts_count = 1
+        await self._tts_slot.acquire()
         await trigger_tts(self._conn, self.GREETING)
         logger.info("[PIPELINE] Greeting TTS triggered")
 
@@ -87,7 +105,7 @@ class Orchestrator:
             logger.info("Orchestrator shutting down")
 
     async def _handle_transcript(self, transcript: str) -> None:
-        """Handle completed STT transcript — route to LangGraph."""
+        """Handle completed STT transcript — route to LangGraph with progressive TTS."""
         if not transcript.strip():
             logger.debug("Empty transcript, skipping")
             return
@@ -97,44 +115,99 @@ class Orchestrator:
 
         self._processing = True
         self._barge_in_event.clear()
-        self._audio.resume()  # ensure playback is allowed after any prior interrupt
+        self._audio.resume()
         t_start = time.perf_counter()
         logger.info(f"[STT] Transcript received (turn {my_turn}): {transcript!r}")
-        logger.info(f"[PIPELINE] Routing to LangGraph agent")
 
         try:
+            buffer = ""
             full_response = ""
+            chunk_index = 0
+            self._pending_tts_count = 0
+            self._first_audio_logged = False
+
+            logger.info("[PIPELINE] Starting progressive TTS — streaming from LangGraph")
+
             async for token in stream_agent(transcript):
                 if self._barge_in_event.is_set() or self._turn_id != my_turn:
                     logger.info("[PIPELINE] Barge-in detected during LangGraph streaming, aborting")
                     return
+                buffer += token
                 full_response += token
 
-            t_langgraph = time.perf_counter()
+                # Check for sentence boundary
+                match = _SENTENCE_END.search(buffer)
+                if match and len(buffer) >= _MIN_CHUNK_CHARS:
+                    end_pos = match.end()
+                    chunk_text = buffer[:end_pos].strip()
+                    buffer = buffer[end_pos:]
+                    if chunk_text:
+                        chunk_index += 1
+                        sent = await self._flush_chunk(chunk_text, chunk_index, my_turn, t_start)
+                        if not sent:
+                            return
+                elif len(buffer) >= _MAX_CHUNK_CHARS:
+                    chunk_text = buffer.strip()
+                    buffer = ""
+                    if chunk_text:
+                        chunk_index += 1
+                        sent = await self._flush_chunk(chunk_text, chunk_index, my_turn, t_start)
+                        if not sent:
+                            return
+
+            # Final flush
+            if buffer.strip() and not self._barge_in_event.is_set() and self._turn_id == my_turn:
+                chunk_index += 1
+                await self._flush_chunk(buffer.strip(), chunk_index, my_turn, t_start)
+
             logger.info(
-                f"[LANGGRAPH] Response complete ({t_langgraph - t_start:.2f}s, "
-                f"{len(full_response)} chars): {full_response[:100]}..."
+                f"[PIPELINE] Progressive TTS complete: {chunk_index} chunks, "
+                f"{len(full_response)} total chars, {time.perf_counter() - t_start:.2f}s"
             )
 
-            # Check barge-in one more time before triggering TTS
-            if self._barge_in_event.is_set() or self._turn_id != my_turn:
-                logger.info("[PIPELINE] Barge-in detected before TTS trigger, aborting")
+            # Guard: if LangGraph produced no output, reset pipeline immediately
+            if chunk_index == 0 and not self._barge_in_event.is_set() and self._turn_id == my_turn:
+                logger.warning(
+                    "[PIPELINE] Empty agent response — no TTS chunks to send, resetting pipeline"
+                )
+                self._processing = False
+                self._audio.resume()
                 return
-
-            self._tts_turn_id = my_turn
-            await trigger_tts(self._conn, full_response)
-            logger.info(f"[TTS] Triggered ({time.perf_counter() - t_start:.2f}s total pipeline)")
 
         except asyncio.CancelledError:
             logger.info("[PIPELINE] Processing cancelled by barge-in")
         except Exception as e:
             logger.error(f"[PIPELINE] Error: {e}", exc_info=True)
         finally:
-            # Only maintain processing state if this is still the active turn
             if self._turn_id == my_turn and not self._barge_in_event.is_set():
-                pass  # _processing cleared by _handle_response_done
+                if self._pending_tts_count == 0:
+                    # Safety net: no pending TTS means no RESPONSE_DONE will come
+                    self._processing = False
+                    self._audio.resume()
+                # else: _processing cleared by _handle_response_done
             else:
                 self._processing = False
+
+    async def _flush_chunk(
+        self, text: str, index: int, my_turn: int, t_start: float
+    ) -> bool:
+        """Acquire the TTS slot, send a chunk, and return True on success.
+
+        Returns False (and does not send) if a barge-in occurred or
+        the turn has moved on while waiting for the slot.
+        """
+        self._pending_tts_count += 1
+        self._tts_turn_id = my_turn
+        await self._tts_slot.acquire()
+        if self._barge_in_event.is_set() or self._turn_id != my_turn:
+            self._tts_slot.release()
+            return False
+        logger.info(
+            f"[CHUNK {index}] TTS triggered at +{time.perf_counter() - t_start:.2f}s "
+            f"({len(text)} chars): {text[:80]}..."
+        )
+        await trigger_tts(self._conn, text)
+        return True
 
     async def _handle_barge_in(self) -> None:
         """Handle user interruption — cancel server response and local playback."""
@@ -144,6 +217,12 @@ class Orchestrator:
         # Signal processing to abort and invalidate the current turn
         self._barge_in_event.set()
         self._turn_id += 1
+        self._pending_tts_count = 0
+        # Release the TTS slot so nothing blocks forever
+        try:
+            self._tts_slot.release()
+        except ValueError:
+            pass  # already released
         # Stop local audio immediately
         self._audio.interrupt()
         # Cancel the in-flight transcript handler task
@@ -163,12 +242,22 @@ class Orchestrator:
     async def _handle_response_done(self) -> None:
         """Handle response completion.
 
-        Guards against stale RESPONSE_DONE events from cancelled responses
-        overwriting the state of a newer turn.
+        Each TTS chunk fires its own RESPONSE_DONE.  We decrement the
+        pending counter and only mark the turn complete when all chunks
+        have finished.
         """
         if self._turn_id != self._tts_turn_id:
             logger.debug("[PIPELINE] Stale response_done (turn moved on), ignoring")
             return
-        self._processing = False
-        self._audio.resume()
-        logger.info("[PIPELINE] Turn complete — ready for next input")
+        self._pending_tts_count = max(0, self._pending_tts_count - 1)
+        # Release the TTS slot so the next chunk can fire
+        try:
+            self._tts_slot.release()
+        except ValueError:
+            pass  # already released (e.g. greeting or barge-in reset)
+        if self._pending_tts_count == 0:
+            self._processing = False
+            self._audio.resume()
+            logger.info("[PIPELINE] All TTS chunks complete — ready for next input")
+        else:
+            logger.debug(f"[PIPELINE] TTS chunk complete, {self._pending_tts_count} remaining")

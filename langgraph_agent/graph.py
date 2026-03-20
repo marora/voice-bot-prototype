@@ -19,6 +19,7 @@ from typing import Literal
 
 from langchain_openai import AzureChatOpenAI
 from langchain_core.messages import SystemMessage
+from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import StateGraph, START, END, MessagesState
 from langgraph.prebuilt import create_react_agent
 
@@ -131,4 +132,5 @@ workflow.add_conditional_edges("supervisor", _route_from_supervisor, MEMBERS)
 for member in MEMBERS:
     workflow.add_edge(member, END)
 
-graph = workflow.compile()
+memory = InMemorySaver()
+graph = workflow.compile(checkpointer=memory)
