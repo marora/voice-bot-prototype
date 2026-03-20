@@ -1,0 +1,819 @@
+18:58:19 [voicebot.audio           ] INFO    audio.py:95 — Audio started: 24000Hz, 1ch, chunk=1200
+18:58:19 [voicebot.session         ] INFO    session.py:89 — Connecting to Voice Live: https://mani-voice-live-bot-resource.services.ai.azure.com
+18:58:20 [voicebot.session         ] INFO    session.py:97 — Voice Live session configured (STT-only, create_response=False)
+18:58:20 [voicebot.main            ] INFO    main.py:61 — ============================================================
+18:58:20 [voicebot.main            ] INFO    main.py:62 — Voice Bot ready — speak into your microphone
+18:58:20 [voicebot.main            ] INFO    main.py:63 — Press Ctrl+C to stop
+18:58:20 [voicebot.main            ] INFO    main.py:64 — ============================================================
+18:58:20 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Hello! I'm your voice assistant. How can I help you today?...
+18:58:20 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PIPELINE] Greeting TTS triggered
+18:58:20 [voicebot.orchestrator    ] INFO    orchestrator.py:83 — Orchestrator running — speak into your microphone
+18:58:20 [voicebot.audio           ] INFO    audio.py:150 — Mic capture started
+18:58:20 [voicebot.events          ] INFO    events.py:81 — Event dispatcher started
+18:58:20 [voicebot.events          ] INFO    events.py:85 — Session created
+18:58:20 [voicebot.events          ] INFO    events.py:88 — Session updated
+18:58:21 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+18:58:21 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Hello! I'm your voice assistant. How can I help you today?"
+18:58:21 [voicebot.events          ] INFO    events.py:132 — Response complete
+18:58:21 [voicebot.orchestrator    ] INFO    orchestrator.py:174 — [PIPELINE] Turn complete — ready for next input
+18:58:27 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+18:58:33 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+18:58:33 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Today is March 19th. I want to know top 10 historical events that happened today.'
+18:58:33 [voicebot.orchestrator    ] INFO    orchestrator.py:102 — [STT] Transcript received (turn 1): 'Today is March 19th. I want to know top 10 historical events that happened today.'
+18:58:33 [voicebot.orchestrator    ] INFO    orchestrator.py:103 — [PIPELINE] Routing to LangGraph agent
+18:58:33 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+18:58:33 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Today is March 19th. I want to know top 10 historical events that happened today.'
+18:58:35 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: search
+18:58:37 [voicebot.langgraph       ] INFO    __init__.py:52 — [LANGGRAPH] stream_agent() complete (6 chars): 'search'
+18:58:37 [voicebot.orchestrator    ] INFO    orchestrator.py:114 — [LANGGRAPH] Response complete (3.91s, 6 chars): search...
+18:58:37 [voicebot.session         ] INFO    session.py:111 — TTS trigger: search...
+18:58:37 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [TTS] Triggered (3.91s total pipeline)
+18:58:44 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+18:58:44 [voicebot.orchestrator    ] INFO    orchestrator.py:143 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+18:58:44 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+18:58:44 [voicebot.orchestrator    ] INFO    orchestrator.py:161 — [BARGE-IN] Interruption handled — ready for new input
+18:58:44 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+18:58:44 [voicebot.events          ] INFO    events.py:128 — TTS spoke: 'Of course! Here are some notable historical events that occurred on March 19 throughout history:\n\n1. **721 BCE** - First recorded lunar eclipse occurred, as noted by the Babylonian astronomers.\n\n2. **1279** - Battle of Yamen: Mongols defeated the Song Dynasty, completing their conquest of China.\n\n3. **1649** - The House of Commons declared England a Commonwealth, following the execution of King Charles I.\n\n4. **1687** - Explorer Robert Cavelier de La Salle was murdered by his crew while searching for the mouth of the Mississippi River.\n\n5. **1822** - The city of Boston was officially incorporated as a city in the state of Massachusetts, USA.\n\n6. **1916** - The First U.S. Air Combat Mission during World War I took place when American pilots flew reconnaissance missions.\n\n7. **1931** - Nevada legalized gambling, paving the way for Las Vegas to become a gambling haven.\n\n8. **1945** - During World War II, Allied forces landed on Luzon, Philippines, as part of their campaign against Japan.\n\n9. **2003** - The United States and coalition forces began their invasion of Iraq during the Iraq War.\n\n10. **2011** - The Arab Spring: Protesters in Yemen experienced one of the deadliest days as government forces opened fire and killed dozens of demonstrators.\n\nLet me know if you want more details about any specific event!'
+18:58:44 [voicebot.events          ] INFO    events.py:132 — Response complete
+18:58:44 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+18:58:45 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+18:58:45 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'One.'
+18:58:45 [voicebot.orchestrator    ] INFO    orchestrator.py:102 — [STT] Transcript received (turn 3): 'One.'
+18:58:45 [voicebot.orchestrator    ] INFO    orchestrator.py:103 — [PIPELINE] Routing to LangGraph agent
+18:58:45 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+18:58:45 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'One.'
+18:58:47 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: general
+18:58:48 [voicebot.langgraph       ] INFO    __init__.py:52 — [LANGGRAPH] stream_agent() complete (134 chars): 'generalIt looks like your message might be incomplete. Could you please provide more context or clarify what you need assistance with?'
+18:58:48 [voicebot.orchestrator    ] INFO    orchestrator.py:114 — [LANGGRAPH] Response complete (2.41s, 134 chars): generalIt looks like your message might be incomplete. Could you please provide more context or clar...
+18:58:48 [voicebot.session         ] INFO    session.py:111 — TTS trigger: generalIt looks like your message might be incomplete. Could you please provide ...
+18:58:48 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [TTS] Triggered (2.41s total pipeline)
+18:58:49 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+18:58:49 [voicebot.events          ] INFO    events.py:128 — TTS spoke: 'Sure! Could you clarify which event you\'d like more details about? You can reference the number (e.g., "Number 1") or the specific event from the list above.'
+18:58:49 [voicebot.events          ] INFO    events.py:132 — Response complete
+18:58:49 [voicebot.orchestrator    ] INFO    orchestrator.py:174 — [PIPELINE] Turn complete — ready for next input
+18:58:56 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+18:58:56 [voicebot.orchestrator    ] INFO    orchestrator.py:87 — Orchestrator shutting down
+18:58:56 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+18:58:56 [voicebot.main            ] INFO    main.py:71 — Voice Bot stopped
+19:16:25 [voicebot.audio           ] INFO    audio.py:95 — Audio started: 24000Hz, 1ch, chunk=1200
+19:16:25 [voicebot.session         ] INFO    session.py:89 — Connecting to Voice Live: https://mani-voice-live-bot-resource.services.ai.azure.com
+19:16:26 [voicebot.session         ] INFO    session.py:97 — Voice Live session configured (STT-only, create_response=False)
+19:16:26 [voicebot.main            ] INFO    main.py:61 — ============================================================
+19:16:26 [voicebot.main            ] INFO    main.py:62 — Voice Bot ready — speak into your microphone
+19:16:26 [voicebot.main            ] INFO    main.py:63 — Press Ctrl+C to stop
+19:16:26 [voicebot.main            ] INFO    main.py:64 — ============================================================
+19:16:26 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Hello! I'm your voice assistant. How can I help you today?...
+19:16:26 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PIPELINE] Greeting TTS triggered
+19:16:26 [voicebot.orchestrator    ] INFO    orchestrator.py:83 — Orchestrator running — speak into your microphone
+19:16:26 [voicebot.audio           ] INFO    audio.py:150 — Mic capture started
+19:16:26 [voicebot.events          ] INFO    events.py:81 — Event dispatcher started
+19:16:26 [voicebot.events          ] INFO    events.py:85 — Session created
+19:16:26 [voicebot.events          ] INFO    events.py:88 — Session updated
+19:16:27 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+19:16:27 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Hello! I'm your voice assistant. How can I help you today?"
+19:16:27 [voicebot.events          ] INFO    events.py:132 — Response complete
+19:16:27 [voicebot.orchestrator    ] INFO    orchestrator.py:174 — [PIPELINE] Turn complete — ready for next input
+19:16:32 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+19:16:40 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+19:16:40 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Today is March 19th. I want you to tell me about top 10 historical events that happened today.'
+19:16:40 [voicebot.orchestrator    ] INFO    orchestrator.py:102 — [STT] Transcript received (turn 1): 'Today is March 19th. I want you to tell me about top 10 historical events that happened today.'
+19:16:40 [voicebot.orchestrator    ] INFO    orchestrator.py:103 — [PIPELINE] Routing to LangGraph agent
+19:16:40 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+19:16:40 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Today is March 19th. I want you to tell me about top 10 historical events that happened today.'
+19:16:42 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: search
+19:16:44 [voicebot.langgraph       ] INFO    __init__.py:52 — [LANGGRAPH] stream_agent() complete (6 chars): 'search'
+19:16:44 [voicebot.orchestrator    ] INFO    orchestrator.py:114 — [LANGGRAPH] Response complete (3.89s, 6 chars): search...
+19:16:44 [voicebot.session         ] INFO    session.py:111 — TTS trigger: search...
+19:16:44 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [TTS] Triggered (3.89s total pipeline)
+19:16:54 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+19:16:54 [voicebot.events          ] INFO    events.py:128 — TTS spoke: 'Certainly! Here are 10 notable historical events that occurred on March 19th:\n\n1. **1279** - Mongol forces defeat the Song dynasty in the Battle of Yamen, marking the end of the Chinese Song dynasty.\n2. **1687** - Explorer Robert Cavelier de La Salle is murdered by his own men while searching for the mouth of the Mississippi River.\n3. **1861** - The First Taranaki War begins in New Zealand between the Māori and British settlers.\n4. **1916** - During World War I, the First Aero Squadron of the U.S. Army flies its first reconnaissance mission.\n5. **1931** - Nevada legalizes gambling, paving the way for Las Vegas to become a global entertainment hub.\n6. **1945** - Adolf Hitler issues his "Nero Decree," ordering the destruction of German infrastructure to prevent their use by Allied forces.\n7. **1979** - The United States House of Representatives begins broadcasting its daily sessions on television for the first time.\n8. **1987** - The FDA approves AZT as the first drug for the treatment of HIV/AIDS.\n9. **2003** - The United States launches an invasion of Iraq, starting the Iraq War.\n10. **2011** - The Arab Spring spreads to Syria, with nationwide protests against the government of Bashar al-Assad.\n\nLet me know if you\'d like more details about any specific event!'
+19:16:54 [voicebot.events          ] INFO    events.py:132 — Response complete
+19:16:54 [voicebot.orchestrator    ] INFO    orchestrator.py:174 — [PIPELINE] Turn complete — ready for next input
+19:17:00 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+19:17:00 [voicebot.orchestrator    ] INFO    orchestrator.py:87 — Orchestrator shutting down
+19:17:00 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+19:17:00 [voicebot.main            ] INFO    main.py:71 — Voice Bot stopped
+10:39:54 [voicebot.audio           ] INFO    audio.py:95 — Audio started: 24000Hz, 1ch, chunk=1200
+10:39:54 [voicebot.session         ] INFO    session.py:89 — Connecting to Voice Live: https://mani-voice-live-bot-resource.services.ai.azure.com
+10:39:54 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+10:39:54 [voicebot.main            ] INFO    main.py:71 — Voice Bot stopped
+10:42:27 [voicebot.audio           ] INFO    audio.py:95 — Audio started: 24000Hz, 1ch, chunk=1200
+10:42:27 [voicebot.session         ] INFO    session.py:89 — Connecting to Voice Live: https://mani-voice-live-bot-resource.services.ai.azure.com
+10:42:28 [voicebot.session         ] INFO    session.py:97 — Voice Live session configured (STT-only, create_response=False)
+10:42:28 [voicebot.main            ] INFO    main.py:61 — ============================================================
+10:42:28 [voicebot.main            ] INFO    main.py:62 — Voice Bot ready — speak into your microphone
+10:42:28 [voicebot.main            ] INFO    main.py:63 — Press Ctrl+C to stop
+10:42:28 [voicebot.main            ] INFO    main.py:64 — ============================================================
+10:42:28 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Hello! I'm your voice assistant. How can I help you today?...
+10:42:28 [voicebot.orchestrator    ] INFO    orchestrator.py:96 — [PIPELINE] Greeting TTS triggered
+10:42:28 [voicebot.orchestrator    ] INFO    orchestrator.py:98 — Orchestrator running — speak into your microphone
+10:42:28 [voicebot.audio           ] INFO    audio.py:150 — Mic capture started
+10:42:28 [voicebot.events          ] INFO    events.py:81 — Event dispatcher started
+10:42:28 [voicebot.events          ] INFO    events.py:85 — Session created
+10:42:28 [voicebot.events          ] INFO    events.py:88 — Session updated
+10:42:28 [voicebot.orchestrator    ] INFO    orchestrator.py:80 — [PLAYBACK] First audio delta received — playback starting
+10:42:29 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+10:42:29 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Hello! I'm your voice assistant. How can I help you today?"
+10:42:29 [voicebot.events          ] INFO    events.py:132 — Response complete
+10:42:29 [voicebot.orchestrator    ] INFO    orchestrator.py:220 — [PIPELINE] All TTS chunks complete — ready for next input
+10:42:34 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:42:41 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:42:41 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Hello, how are you doing? Today is March 20th. Tell me about top 20.'
+10:42:41 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 1): 'Hello, how are you doing? Today is March 20th. Tell me about top 20.'
+10:42:41 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:42:41 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:42:41 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Hello, how are you doing? Today is March 20th. Tell me about top 20.'
+10:42:42 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:42:42 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:42:42 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:42:42 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:42:42 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:42:42 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:42:47 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:42:47 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Historical events that may have occurred today. After that, I want you to look up.'
+10:42:47 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 3): 'Historical events that may have occurred today. After that, I want you to look up.'
+10:42:47 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:42:47 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:42:47 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Historical events that may have occurred today. After that, I want you to look up.'
+10:42:48 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:42:48 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:42:48 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:42:48 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:42:48 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:42:48 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:42:50 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:42:51 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'The main players for those top twenty.'
+10:42:51 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 5): 'The main players for those top twenty.'
+10:42:51 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:42:51 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:42:51 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'The main players for those top twenty.'
+10:42:51 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:42:51 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:42:51 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:42:51 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:42:51 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:42:51 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:42:54 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:42:54 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'event and then after that I want you to...'
+10:42:54 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 7): 'event and then after that I want you to...'
+10:42:54 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:42:54 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:42:54 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'event and then after that I want you to...'
+10:42:56 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:42:56 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:42:56 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:42:56 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:42:56 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:42:56 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:43:05 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:43:06 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'I want you to look up the astrological astrological forecasts for those players of those.'
+10:43:06 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 9): 'I want you to look up the astrological astrological forecasts for those players of those.'
+10:43:06 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:43:06 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:43:06 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'I want you to look up the astrological astrological forecasts for those players of those.'
+10:43:07 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: search
+10:43:08 [voicebot.langgraph       ] INFO    __init__.py:52 — [LANGGRAPH] stream_agent() complete (6 chars): 'search'
+10:43:08 [voicebot.orchestrator    ] INFO    orchestrator.py:163 — [CHUNK 1] TTS triggered at +2.21s (6 chars): search...
+10:43:08 [voicebot.session         ] INFO    session.py:111 — TTS trigger: search...
+10:43:08 [voicebot.orchestrator    ] INFO    orchestrator.py:166 — [PIPELINE] Progressive TTS complete: 1 chunks, 6 total chars, 2.21s
+10:43:09 [voicebot.orchestrator    ] INFO    orchestrator.py:80 — [PLAYBACK] First audio delta received — playback starting
+10:43:13 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+10:43:13 [voicebot.events          ] INFO    events.py:128 — TTS spoke: 'It seems you\'re asking for historical events that occurred on March 20th, followed by the main figures associated with those events, and then astrological forecasts for those individuals. I need clarification before proceeding:\n\n1. Are you specifically asking for **historical events related to the date March 20th** and their central figures?\n2. When you say "astrological forecasts," do you mean their zodiac-based predictions for today (March 20th)?\n3. Should I proceed with gathering the historical events first, then the figures, and finally their astrological forecasts?\n  \nLet me know how you\'d like me to proceed!'
+10:43:13 [voicebot.events          ] INFO    events.py:132 — Response complete
+10:43:13 [voicebot.orchestrator    ] INFO    orchestrator.py:220 — [PIPELINE] All TTS chunks complete — ready for next input
+10:43:47 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:43:49 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:43:50 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'The answer is yes for all three.'
+10:43:50 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 10): 'The answer is yes for all three.'
+10:43:50 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:43:50 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:43:50 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'The answer is yes for all three.'
+10:43:51 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: general
+10:43:52 [voicebot.orchestrator    ] INFO    orchestrator.py:145 — [CHUNK 1] TTS triggered at +2.27s (105 chars): generalCould you please provide more context or specify the questions or stateme...
+10:43:52 [voicebot.session         ] INFO    session.py:111 — TTS trigger: generalCould you please provide more context or specify the questions or stateme...
+10:43:52 [voicebot.orchestrator    ] INFO    orchestrator.py:145 — [CHUNK 2] TTS triggered at +2.27s (66 chars): This will help me understand and provide a more accurate response....
+10:43:52 [voicebot.session         ] INFO    session.py:111 — TTS trigger: This will help me understand and provide a more accurate response....
+10:43:52 [voicebot.langgraph       ] INFO    __init__.py:52 — [LANGGRAPH] stream_agent() complete (172 chars): 'generalCould you please provide more context or specify the questions or statements you are referring to? This will help me understand and provide a more accurate response.'
+10:43:52 [voicebot.orchestrator    ] INFO    orchestrator.py:166 — [PIPELINE] Progressive TTS complete: 2 chunks, 172 total chars, 2.28s
+10:43:52 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Conversation already has an active response.', 'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'param': None, 'event_id': None}
+10:43:53 [voicebot.orchestrator    ] INFO    orchestrator.py:80 — [PLAYBACK] First audio delta received — playback starting
+10:44:14 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+10:44:14 [voicebot.events          ] INFO    events.py:128 — TTS spoke: 'Alright, let\'s break this task into steps:\n\n### Step 1: Historical Events on March 20th\nI\'ll first gather notable historical events that occurred on March 20th.  \n\n### Step 2: Key Figures Associated with the Events  \nOnce I\'ve compiled the events, I\'ll identify the main individuals involved.\n\n### Step 3: Astrological Forecasts for the Figures  \nFinally, I\'ll provide astrological forecasts for those individuals based on their zodiac signs, if their birth dates are known.  \n\nLet me start with Step 1.\nHere are notable historical events that occurred on March 20th:\n\n### Historical Events on March 20th:\n1. **1602** - The Dutch East India Company was established, becoming one of the most influential trading companies in history.\n2. **1727** - The death of physicist and mathematician Sir Isaac Newton.\n3. **1815** - Napoleon Bonaparte entered Paris after escaping from exile on Elba, marking the start of the "Hundred Days."\n4. **1852** - Harriet Beecher Stowe’s novel *Uncle Tom’s Cabin* was published, influencing anti-slavery movements.\n5. **1916** - Albert Einstein published his general theory of relativity.\n6. **1969** - John Lennon and Yoko Ono were married in Gibraltar.\n7. **1995** - Tokyo subway sarin attack by the Aum Shinrikyo cult took place.\n8. **2003** - The U.S. launched its invasion of Iraq, beginning the Iraq War.\n9. **2015** - The Solar Eclipse occurred, visible in parts of Europe, Africa, and Asia.\n\n### Step 2: Key Figures Associated with These Events\nHere are the central figures for these historical events:\n1. **Dutch East India Company** - Notable founders, including Johan van Oldenbarnevelt.\n2. **Isaac Newton** - Physicist and mathematician.\n3. **Napoleon Bonaparte** - Emperor of France.\n4. **Harriet Beecher Stowe** - Author of *Uncle Tom’s Cabin*.\n5. **Albert Einstein** - Theoretical physicist.\n6. **John Lennon and Yoko Ono** - Musicians and peace activists.\n7. **Tokyo Subway Sarin Attack** - Members of the Aum Shinrikyo cult; Shoko Asahara (leader).\n8. **George W. Bush** - U.S. President during the Iraq invasion.\n9. **Solar Eclipse** - Astronomers and observers globally.\n\n### Step 3: Astrological Forecasts\nTo proceed with astrological forecasts, I will need the birth dates of these individuals. Some are known:\n- Isaac Newton: Born January 4, 1643 (Capricorn).\n- Napoleon Bonaparte: Born August 15, 1769 (Leo).\n- Harriet Beecher Stowe: Born June 14, 1811 (Gemini).\n- Albert Einstein: Born March 14, 1879 (Pisces).\n- John Lennon: Born October 9, 1940 (Libra).\n- George W. Bush: Born July 6, 1946 (Cancer).\n\nLet me know if you\'d like me to provide astrological forecasts for these individuals based on their zodiac signs.'
+10:44:14 [voicebot.events          ] INFO    events.py:132 — Response complete
+10:45:49 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:45:49 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:45:49 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:45:49 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:45:49 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:45:51 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:45:51 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Go ahead, stop.'
+10:45:51 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 12): 'Go ahead, stop.'
+10:45:51 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:45:51 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:45:51 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Go ahead, stop.'
+10:45:52 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:45:52 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:45:52 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:45:52 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:45:52 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:45:52 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:45:55 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:45:55 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'No, I want to ask you about something different.'
+10:45:55 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 14): 'No, I want to ask you about something different.'
+10:45:55 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:45:55 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:45:55 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'No, I want to ask you about something different.'
+10:45:55 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:45:55 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:45:55 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:45:55 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:45:55 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:45:55 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:45:57 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:45:57 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'I want you to look now.'
+10:45:57 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 16): 'I want you to look now.'
+10:45:57 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:45:57 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:45:57 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'I want you to look now.'
+10:45:57 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:45:57 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:45:57 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:45:57 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:45:57 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:45:58 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:46:04 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:46:04 [voicebot.events          ] INFO    events.py:105 — STT transcript: "I want you to build me an introspective world event that's happening in India."
+10:46:04 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 18): "I want you to build me an introspective world event that's happening in India."
+10:46:04 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:46:04 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:46:04 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: "I want you to build me an introspective world event that's happening in India."
+10:46:05 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:46:05 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:46:05 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:46:05 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:46:05 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:46:05 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:46:10 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:46:10 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'And Stone and World on March 20th.'
+10:46:10 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 20): 'And Stone and World on March 20th.'
+10:46:10 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:46:10 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:46:10 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'And Stone and World on March 20th.'
+10:46:11 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: general
+10:46:12 [voicebot.orchestrator    ] INFO    orchestrator.py:145 — [CHUNK 1] TTS triggered at +2.10s (103 chars): generalIt seems like you're referring to an event or release involving "Stone an...
+10:46:12 [voicebot.session         ] INFO    session.py:111 — TTS trigger: generalIt seems like you're referring to an event or release involving "Stone an...
+10:46:12 [voicebot.orchestrator    ] INFO    orchestrator.py:145 — [CHUNK 2] TTS triggered at +2.44s (147 chars): However, without additional context, it's unclear what this pertains to—whether ...
+10:46:12 [voicebot.session         ] INFO    session.py:111 — TTS trigger: However, without additional context, it's unclear what this pertains to—whether ...
+10:46:13 [voicebot.orchestrator    ] INFO    orchestrator.py:145 — [CHUNK 3] TTS triggered at +2.52s (156 chars): If you could provide more context or details about "Stone and World," I'd be hap...
+10:46:13 [voicebot.session         ] INFO    session.py:111 — TTS trigger: If you could provide more context or details about "Stone and World," I'd be hap...
+10:46:13 [voicebot.langgraph       ] INFO    __init__.py:52 — [LANGGRAPH] stream_agent() complete (408 chars): 'generalIt seems like you\'re referring to an event or release involving "Stone and World" on March 20th. However, without additional context, it\'s unclear what this pertains to—whether it\'s a book, film, game, music release, or something else entirely. If you could provide more context or details about "Stone and World," I\'d be happy to help with more information or insights related to that event or topic.'
+10:46:13 [voicebot.orchestrator    ] INFO    orchestrator.py:166 — [PIPELINE] Progressive TTS complete: 3 chunks, 408 total chars, 2.53s
+10:46:13 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Conversation already has an active response.', 'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'param': None, 'event_id': None}
+10:46:13 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Conversation already has an active response.', 'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'param': None, 'event_id': None}
+10:46:13 [voicebot.orchestrator    ] INFO    orchestrator.py:80 — [PLAYBACK] First audio delta received — playback starting
+10:46:24 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:46:24 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:46:24 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:46:24 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:46:24 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+10:46:24 [voicebot.events          ] INFO    events.py:128 — TTS spoke: 'It seems you\'re asking me to create a hypothetical or introspective world event happening in India, potentially connected to "Stone and World" on March 20th. Let me craft a creative and thought-provoking scenario for you:\n\n---\n\n### Introspective World Event: **The Stone of Unity**\n\nOn March 20th, India becomes the focal point of a global introspection movement titled **"The Stone and World"**. This event is spearheaded by thinkers, artists, and spiritual leaders across the nation, aiming to remind humanity of the interconnectedness between nature, history, and the future. \n\n#### The Core Inspiration: The Stone\nThe event revolves around a symbolic artifact called the "Stone of Unity," discovered in the ancient caves of Bhimbetka, a UNESCO World Heritage site in Madhya Pradesh. This stone, etched with symbols believed to be 10,000 years old, represents the early human attempts to communicate and connect with the world around them. Archaeologists believe these markings signify early efforts to understand natural patterns—the sun, moon, stars, and earth—which resonate with astrological cycles even today.\n\n#### The World Connection\nThe event bridges India’s rich cultural heritage with modern global dilemmas:\n1. **Climate Change & Sustainability** - The stone serves as a reminder of humanity\'s ancient respect for nature and the need to protect it.\n2. **Global Peace & Unity** - Leaders from various countries participate virtually, reflecting on shared human values and ancient wisdom.\n3. **Technological Evolution** - Scientists and historians highlight parallels between ancient stone carvings and modern-day data encoding.\n\n#### Activities on March 20th\n- **Meditative Stone Circles**: Across India’s cities, people gather around replicas of the "Stone of Unity" to meditate and reflect on personal and global challenges.\n- **Astrological Insights**: Astrologers internationally analyze the cosmic significance of March 20th, marking it as the Spring Equinox, a time of balance and renewal.\n- **Art Installations**: Artists contribute by reimagining ancient stone carvings through modern sculptures and digital projections.\n\n#### The Legacy\n"The Stone and World" becomes an annual event, with March 20th celebrated globally as a day for introspection, unity, and sustainable action. India, the birthplace of this movement, is hailed for inspiring the world to reconnect with its roots.\n\n---\n\nLet me know if you\'d like further details or modifications to this introspective world event idea!'
+10:46:24 [voicebot.events          ] INFO    events.py:132 — Response complete
+10:46:24 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:46:24 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:46:24 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'No.'
+10:46:24 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 22): 'No.'
+10:46:24 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:46:24 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:46:24 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'No.'
+10:46:25 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:46:25 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:46:25 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:46:25 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:46:25 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:46:25 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:46:35 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:46:35 [voicebot.events          ] INFO    events.py:105 — STT transcript: "No, I'm not asking for anything to happen. I want you to be kindly what's happening on some main historical events that happened on..."
+10:46:35 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 24): "No, I'm not asking for anything to happen. I want you to be kindly what's happening on some main historical events that happened on..."
+10:46:35 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:46:35 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:46:35 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: "No, I'm not asking for anything to happen. I want you to be kindly what's happening on some main historical events that happened on..."
+10:46:35 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+10:46:35 [voicebot.orchestrator    ] INFO    orchestrator.py:185 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+10:46:35 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+10:46:35 [voicebot.orchestrator    ] INFO    orchestrator.py:204 — [BARGE-IN] Interruption handled — ready for new input
+10:46:35 [voicebot.orchestrator    ] INFO    orchestrator.py:172 — [PIPELINE] Processing cancelled by barge-in
+10:46:36 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+10:46:37 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+10:46:38 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'March 20th in India.'
+10:46:38 [voicebot.orchestrator    ] INFO    orchestrator.py:117 — [STT] Transcript received (turn 26): 'March 20th in India.'
+10:46:38 [voicebot.orchestrator    ] INFO    orchestrator.py:126 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+10:46:38 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+10:46:38 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'March 20th in India.'
+10:46:38 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: search
+10:46:41 [voicebot.langgraph       ] INFO    __init__.py:52 — [LANGGRAPH] stream_agent() complete (6 chars): 'search'
+10:46:41 [voicebot.orchestrator    ] INFO    orchestrator.py:163 — [CHUNK 1] TTS triggered at +3.53s (6 chars): search...
+10:46:41 [voicebot.session         ] INFO    session.py:111 — TTS trigger: search...
+10:46:41 [voicebot.orchestrator    ] INFO    orchestrator.py:166 — [PIPELINE] Progressive TTS complete: 1 chunks, 6 total chars, 3.53s
+10:46:42 [voicebot.orchestrator    ] INFO    orchestrator.py:80 — [PLAYBACK] First audio delta received — playback starting
+10:46:53 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+10:46:53 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Here are some notable historical events that occurred in India on March 20th:\n\n### **Historical Events in India on March 20th**\n\n1. **1916 - Formation of Women's Indian Association (WIA):**  \nThe Women's Indian Association was founded on March 20, 1916, by Annie Besant, Margaret E. Cousins, and others. It was one of the earliest organizations advocating for women's rights in India, promoting education, health, and social reforms for women across the country. It played a significant role in raising awareness about women's suffrage and equality in pre-independence India.\n\n2. **1993 - Bombay Bomb Blasts Conviction:**  \nOn March 20, 1993, the Bombay serial blasts trial saw progress with arrests and investigations underway. These blasts were one of the deadliest terrorist attacks in India, resulting in significant casualties and marking a turning point in India's security measures.\n\n3. **2012 - Nupur Talwar Granted Bail in Aarushi Murder Case:**  \nOn March 20, 2012, Nupur Talwar was granted bail in connection with the Aarushi-Hemraj double murder case, which had gripped the nation for years. The case remains one of the most sensational and controversial criminal cases in Indian history.\n\n4. **Spring Equinox Celebrations Across India:**  \nMarch 20 often aligns with the Spring Equinox, a day of balance between day and night. In parts of India, this day is celebrated with local festivals and rituals welcoming the spring season, though it is not a widely recognized event like Holi or Diwali.\n\n---\n\nThese are some notable historical and cultural moments tied to March 20th in India. Let me know if you'd like me to explore any of them in more detail!"
+10:46:53 [voicebot.events          ] INFO    events.py:132 — Response complete
+10:46:53 [voicebot.orchestrator    ] INFO    orchestrator.py:220 — [PIPELINE] All TTS chunks complete — ready for next input
+10:47:13 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+10:47:13 [voicebot.orchestrator    ] INFO    orchestrator.py:102 — Orchestrator shutting down
+10:47:13 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+10:47:13 [voicebot.main            ] INFO    main.py:71 — Voice Bot stopped
+11:51:52 [voicebot.audio           ] INFO    audio.py:95 — Audio started: 24000Hz, 1ch, chunk=1200
+11:51:52 [voicebot.session         ] INFO    session.py:89 — Connecting to Voice Live: https://mani-voice-live-bot-resource.services.ai.azure.com
+11:51:58 [voicebot.session         ] INFO    session.py:97 — Voice Live session configured (STT-only, create_response=False)
+11:51:58 [voicebot.main            ] INFO    main.py:61 — ============================================================
+11:51:58 [voicebot.main            ] INFO    main.py:62 — Voice Bot ready — speak into your microphone
+11:51:58 [voicebot.main            ] INFO    main.py:63 — Press Ctrl+C to stop
+11:51:58 [voicebot.main            ] INFO    main.py:64 — ============================================================
+11:51:58 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Hello! I'm your voice assistant. How can I help you today?...
+11:51:58 [voicebot.orchestrator    ] INFO    orchestrator.py:97 — [PIPELINE] Greeting TTS triggered
+11:51:58 [voicebot.orchestrator    ] INFO    orchestrator.py:99 — Orchestrator running — speak into your microphone
+11:51:58 [voicebot.audio           ] INFO    audio.py:150 — Mic capture started
+11:51:58 [voicebot.events          ] INFO    events.py:81 — Event dispatcher started
+11:51:58 [voicebot.events          ] INFO    events.py:85 — Session created
+11:51:58 [voicebot.events          ] INFO    events.py:88 — Session updated
+11:51:59 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PLAYBACK] First audio delta received — playback starting
+11:51:59 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+11:51:59 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Hello! I'm your voice assistant. How can I help you today?"
+11:51:59 [voicebot.events          ] INFO    events.py:132 — Response complete
+11:51:59 [voicebot.orchestrator    ] INFO    orchestrator.py:246 — [PIPELINE] All TTS chunks complete — ready for next input
+11:52:05 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:52:07 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:52:07 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:52:07 [voicebot.events          ] INFO    events.py:105 — STT transcript: ''
+11:52:10 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:52:10 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Hi, today is March 20th. I want you to do these three things.'
+11:52:10 [voicebot.orchestrator    ] INFO    orchestrator.py:118 — [STT] Transcript received (turn 1): 'Hi, today is March 20th. I want you to do these three things.'
+11:52:10 [voicebot.orchestrator    ] INFO    orchestrator.py:127 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+11:52:10 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+11:52:10 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Hi, today is March 20th. I want you to do these three things.'
+11:52:10 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:52:10 [voicebot.orchestrator    ] INFO    orchestrator.py:201 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+11:52:10 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+11:52:10 [voicebot.orchestrator    ] INFO    orchestrator.py:225 — [BARGE-IN] Interruption handled — ready for new input
+11:52:10 [voicebot.orchestrator    ] INFO    orchestrator.py:167 — [PIPELINE] Processing cancelled by barge-in
+11:52:10 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+11:52:22 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:52:23 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:52:23 [voicebot.events          ] INFO    events.py:105 — STT transcript: ''
+11:52:30 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:52:30 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'I want you to look up top 10 historical events that occurred today in India. I want you to find out who the main players were for those top 10 events. Then I want you to search about astrological events based on their data bugs that were predicted.'
+11:52:30 [voicebot.orchestrator    ] INFO    orchestrator.py:118 — [STT] Transcript received (turn 3): 'I want you to look up top 10 historical events that occurred today in India. I want you to find out who the main players were for those top 10 events. Then I want you to search about astrological events based on their data bugs that were predicted.'
+11:52:30 [voicebot.orchestrator    ] INFO    orchestrator.py:127 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+11:52:30 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+11:52:30 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'I want you to look up top 10 historical events that occurred today in India. I want you to find out who the main players were for those top 10 events. Then I want you to search about astrological events based on their data bugs that were predicted.'
+11:52:30 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:52:30 [voicebot.orchestrator    ] INFO    orchestrator.py:201 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+11:52:30 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+11:52:30 [voicebot.orchestrator    ] INFO    orchestrator.py:225 — [BARGE-IN] Interruption handled — ready for new input
+11:52:30 [voicebot.orchestrator    ] INFO    orchestrator.py:167 — [PIPELINE] Processing cancelled by barge-in
+11:52:30 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+11:52:36 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:52:36 [voicebot.events          ] INFO    events.py:105 — STT transcript: "For those put titles on, yeah, that's the request."
+11:52:36 [voicebot.orchestrator    ] INFO    orchestrator.py:118 — [STT] Transcript received (turn 5): "For those put titles on, yeah, that's the request."
+11:52:36 [voicebot.orchestrator    ] INFO    orchestrator.py:127 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+11:52:36 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+11:52:36 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: "For those put titles on, yeah, that's the request."
+11:52:37 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: general
+11:52:38 [voicebot.orchestrator    ] INFO    orchestrator.py:190 — [CHUNK 1] TTS triggered at +2.05s (62 chars): Could you please provide more context or clarify your request?...
+11:52:38 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Could you please provide more context or clarify your request?...
+11:52:38 [voicebot.orchestrator    ] INFO    orchestrator.py:190 — [CHUNK 2] TTS triggered at +2.06s (73 chars): Are you asking for title suggestions for a particular subject or project?...
+11:52:38 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Are you asking for title suggestions for a particular subject or project?...
+11:52:38 [voicebot.orchestrator    ] INFO    orchestrator.py:190 — [CHUNK 3] TTS triggered at +2.08s (54 chars): Knowing more specifics will help me assist you better....
+11:52:38 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Knowing more specifics will help me assist you better....
+11:52:38 [voicebot.langgraph       ] INFO    __init__.py:56 — [LANGGRAPH] stream_agent() complete (191 chars): 'Could you please provide more context or clarify your request? Are you asking for title suggestions for a particular subject or project? Knowing more specifics will help me assist you better.'
+11:52:38 [voicebot.orchestrator    ] INFO    orchestrator.py:161 — [PIPELINE] Progressive TTS complete: 3 chunks, 191 total chars, 2.10s
+11:52:38 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Conversation already has an active response.', 'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'param': None, 'event_id': None}
+11:52:38 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Conversation already has an active response.', 'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'param': None, 'event_id': None}
+11:52:39 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PLAYBACK] First audio delta received — playback starting
+11:52:40 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+11:52:40 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "I can't browse the internet or look up real-time information, but I can help with general knowledge or historical events that are commonly documented regarding March 20th in India. If you'd like, I can provide information related to notable historical events, figures, or astrology in general. Let me know how you'd like to proceed!"
+11:52:40 [voicebot.events          ] INFO    events.py:132 — Response complete
+11:53:07 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:53:07 [voicebot.orchestrator    ] INFO    orchestrator.py:201 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+11:53:07 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+11:53:07 [voicebot.orchestrator    ] INFO    orchestrator.py:225 — [BARGE-IN] Interruption handled — ready for new input
+11:53:07 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+11:53:07 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:53:08 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:53:08 [voicebot.events          ] INFO    events.py:105 — STT transcript: ''
+11:53:18 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:53:19 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:53:19 [voicebot.events          ] INFO    events.py:105 — STT transcript: ''
+11:53:20 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:53:20 [voicebot.events          ] INFO    events.py:105 — STT transcript: "That's exactly what I wanted to do. I want you to look up notable historical events that occurred on March 20th, one. Two, I also want you to look up the protagonists, the central players that were part of those events. Then I also want you to look up... Still."
+11:53:20 [voicebot.orchestrator    ] INFO    orchestrator.py:118 — [STT] Transcript received (turn 7): "That's exactly what I wanted to do. I want you to look up notable historical events that occurred on March 20th, one. Two, I also want you to look up the protagonists, the central players that were part of those events. Then I also want you to look up... Still."
+11:53:20 [voicebot.orchestrator    ] INFO    orchestrator.py:127 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+11:53:20 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+11:53:20 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: "That's exactly what I wanted to do. I want you to look up notable historical events that occurred on March 20th, one. Two, I also want you to look up the protagonists, the central players that were part of those events. Then I also want you to look up... Still."
+11:53:21 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:53:21 [voicebot.orchestrator    ] INFO    orchestrator.py:201 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+11:53:21 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+11:53:21 [voicebot.orchestrator    ] INFO    orchestrator.py:225 — [BARGE-IN] Interruption handled — ready for new input
+11:53:21 [voicebot.orchestrator    ] INFO    orchestrator.py:167 — [PIPELINE] Processing cancelled by barge-in
+11:53:21 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+11:53:22 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:53:22 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Predictions of...'
+11:53:22 [voicebot.orchestrator    ] INFO    orchestrator.py:118 — [STT] Transcript received (turn 9): 'Predictions of...'
+11:53:22 [voicebot.orchestrator    ] INFO    orchestrator.py:127 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+11:53:22 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+11:53:22 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Predictions of...'
+11:53:22 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:53:22 [voicebot.orchestrator    ] INFO    orchestrator.py:201 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+11:53:22 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+11:53:22 [voicebot.orchestrator    ] INFO    orchestrator.py:225 — [BARGE-IN] Interruption handled — ready for new input
+11:53:22 [voicebot.orchestrator    ] INFO    orchestrator.py:167 — [PIPELINE] Processing cancelled by barge-in
+11:53:23 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+11:53:24 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:53:25 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Astrologically.'
+11:53:25 [voicebot.orchestrator    ] INFO    orchestrator.py:118 — [STT] Transcript received (turn 11): 'Astrologically.'
+11:53:25 [voicebot.orchestrator    ] INFO    orchestrator.py:127 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+11:53:25 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+11:53:25 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Astrologically.'
+11:53:25 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: search
+11:53:26 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:53:26 [voicebot.orchestrator    ] INFO    orchestrator.py:201 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+11:53:26 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+11:53:26 [voicebot.orchestrator    ] INFO    orchestrator.py:225 — [BARGE-IN] Interruption handled — ready for new input
+11:53:26 [voicebot.orchestrator    ] INFO    orchestrator.py:167 — [PIPELINE] Processing cancelled by barge-in
+11:53:26 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+11:53:29 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:53:29 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Alongside those events.'
+11:53:29 [voicebot.orchestrator    ] INFO    orchestrator.py:118 — [STT] Transcript received (turn 13): 'Alongside those events.'
+11:53:29 [voicebot.orchestrator    ] INFO    orchestrator.py:127 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+11:53:29 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+11:53:29 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Alongside those events.'
+11:53:30 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: general
+11:53:31 [voicebot.orchestrator    ] INFO    orchestrator.py:190 — [CHUNK 1] TTS triggered at +1.94s (91 chars): It looks like your message may have been cut off or is referencing a previous co...
+11:53:31 [voicebot.session         ] INFO    session.py:111 — TTS trigger: It looks like your message may have been cut off or is referencing a previous co...
+11:53:31 [voicebot.orchestrator    ] INFO    orchestrator.py:190 — [CHUNK 2] TTS triggered at +2.05s (80 chars): Could you please provide more detail or clarify what events you're referring to?...
+11:53:31 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Could you please provide more detail or clarify what events you're referring to?...
+11:53:31 [voicebot.orchestrator    ] INFO    orchestrator.py:190 — [CHUNK 3] TTS triggered at +2.05s (39 chars): I'd be happy to help with more context!...
+11:53:31 [voicebot.session         ] INFO    session.py:111 — TTS trigger: I'd be happy to help with more context!...
+11:53:31 [voicebot.langgraph       ] INFO    __init__.py:56 — [LANGGRAPH] stream_agent() complete (212 chars): "It looks like your message may have been cut off or is referencing a previous conversation. Could you please provide more detail or clarify what events you're referring to? I'd be happy to help with more context!"
+11:53:31 [voicebot.orchestrator    ] INFO    orchestrator.py:161 — [PIPELINE] Progressive TTS complete: 3 chunks, 212 total chars, 2.06s
+11:53:31 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Conversation already has an active response.', 'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'param': None, 'event_id': None}
+11:53:31 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Conversation already has an active response.', 'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'param': None, 'event_id': None}
+11:53:32 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PLAYBACK] First audio delta received — playback starting
+11:53:35 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+11:53:35 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "I understand your request, but I cannot perform real-time internet searches to look up specific historical events, protagonists involved, or astrological predictions for March 20th. However, I can help you with general knowledge based on widely known information about historical events, astrology, or central figures.\n\nIf you can provide more context or clarify your area of interest (e.g., politics, independence movements, cultural milestones, celestial phenomena), I can try to share relevant general insights or guide you on how to find such information. Let me know how you'd like to proceed!"
+11:53:35 [voicebot.events          ] INFO    events.py:132 — Response complete
+11:54:10 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:54:10 [voicebot.orchestrator    ] INFO    orchestrator.py:201 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+11:54:10 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+11:54:10 [voicebot.orchestrator    ] INFO    orchestrator.py:225 — [BARGE-IN] Interruption handled — ready for new input
+11:54:10 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+11:54:27 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:54:28 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:54:28 [voicebot.events          ] INFO    events.py:105 — STT transcript: ''
+11:54:31 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:54:31 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Yes, you can proceed with general knowledge for top 10 events that occurred in India. Notable events that occurred in India on March 20th, number one. Number 2, I want you to find out central figures that were involved in those notable events. And #3, do astrological.'
+11:54:31 [voicebot.orchestrator    ] INFO    orchestrator.py:118 — [STT] Transcript received (turn 15): 'Yes, you can proceed with general knowledge for top 10 events that occurred in India. Notable events that occurred in India on March 20th, number one. Number 2, I want you to find out central figures that were involved in those notable events. And #3, do astrological.'
+11:54:31 [voicebot.orchestrator    ] INFO    orchestrator.py:127 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+11:54:31 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+11:54:31 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Yes, you can proceed with general knowledge for top 10 events that occurred in India. Notable events that occurred in India on March 20th, number one. Number 2, I want you to find out central figures that were involved in those notable events. And #3, do astrological.'
+11:54:31 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+11:54:31 [voicebot.orchestrator    ] INFO    orchestrator.py:201 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+11:54:31 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+11:54:31 [voicebot.orchestrator    ] INFO    orchestrator.py:225 — [BARGE-IN] Interruption handled — ready for new input
+11:54:31 [voicebot.orchestrator    ] INFO    orchestrator.py:167 — [PIPELINE] Processing cancelled by barge-in
+11:54:31 [voicebot.events          ] ERROR   events.py:137 — Voice Live error: {'message': 'Cancellation failed: no active response found.', 'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'param': None, 'event_id': None}
+11:54:36 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+11:54:36 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Your predictions of those events, whether, yeah.'
+11:54:36 [voicebot.orchestrator    ] INFO    orchestrator.py:118 — [STT] Transcript received (turn 17): 'Your predictions of those events, whether, yeah.'
+11:54:36 [voicebot.orchestrator    ] INFO    orchestrator.py:127 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+11:54:36 [voicebot.langgraph       ] INFO    __init__.py:41 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+11:54:36 [voicebot.langgraph       ] INFO    __init__.py:42 — [LANGGRAPH] Input: 'Your predictions of those events, whether, yeah.'
+11:54:37 [voicebot.langgraph       ] INFO    graph.py:88 — Supervisor routed to: weather
+11:54:38 [voicebot.langgraph       ] INFO    __init__.py:56 — [LANGGRAPH] stream_agent() complete (0 chars): ''
+11:54:38 [voicebot.orchestrator    ] INFO    orchestrator.py:161 — [PIPELINE] Progressive TTS complete: 0 chunks, 0 total chars, 2.19s
+11:57:32 [azure.ai.voicelive.aio._patch] ERROR   _patch.py:507 — WebSocket connection error: No PONG received after 15.0 seconds
+11:57:32 [azure.ai.voicelive.aio._patch] ERROR   _patch.py:553 — Failed to send event: Cannot write to closing transport
+11:57:32 [voicebot.audio           ] ERROR   audio.py:160 — Mic capture error: Failed to send event: Cannot write to closing transport
+11:57:32 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+11:57:32 [voicebot.main            ] INFO    main.py:71 — Voice Bot stopped
+13:29:09 [voicebot.audio           ] INFO    audio.py:95 — Audio started: 24000Hz, 1ch, chunk=1200
+13:29:09 [voicebot.session         ] INFO    session.py:89 — Connecting to Voice Live: https://mani-voice-live-bot-resource.services.ai.azure.com
+13:29:10 [voicebot.session         ] INFO    session.py:97 — Voice Live session configured (STT-only, create_response=False)
+13:29:10 [voicebot.main            ] INFO    main.py:61 — ============================================================
+13:29:10 [voicebot.main            ] INFO    main.py:62 — Voice Bot ready — speak into your microphone
+13:29:10 [voicebot.main            ] INFO    main.py:63 — Press Ctrl+C to stop
+13:29:10 [voicebot.main            ] INFO    main.py:64 — ============================================================
+13:29:10 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Hello! I'm your voice assistant. How can I help you today?...
+13:29:10 [voicebot.orchestrator    ] INFO    orchestrator.py:99 — [PIPELINE] Greeting TTS triggered
+13:29:10 [voicebot.orchestrator    ] INFO    orchestrator.py:101 — Orchestrator running — speak into your microphone
+13:29:10 [voicebot.audio           ] INFO    audio.py:150 — Mic capture started
+13:29:10 [voicebot.events          ] INFO    events.py:81 — Event dispatcher started
+13:29:10 [voicebot.events          ] INFO    events.py:85 — Session created
+13:29:11 [voicebot.events          ] INFO    events.py:88 — Session updated
+13:29:11 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PLAYBACK] First audio delta received — playback starting
+13:29:11 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+13:29:11 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Hello! I'm your voice assistant. How can I help you today?"
+13:29:11 [voicebot.events          ] INFO    events.py:132 — Response complete
+13:29:11 [voicebot.orchestrator    ] INFO    orchestrator.py:261 — [PIPELINE] All TTS chunks complete — ready for next input
+13:29:17 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:29:21 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:29:21 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Yes, there are two things I need your help with.'
+13:29:21 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 1): 'Yes, there are two things I need your help with.'
+13:29:21 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:29:21 [voicebot.langgraph       ] INFO    __init__.py:43 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:29:21 [voicebot.langgraph       ] INFO    __init__.py:44 — [LANGGRAPH] Input: 'Yes, there are two things I need your help with.'
+13:29:21 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:29:21 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:29:21 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:29:21 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:29:21 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:29:24 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:29:24 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Number one, today is March 20th.'
+13:29:24 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 3): 'Number one, today is March 20th.'
+13:29:24 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:29:24 [voicebot.langgraph       ] INFO    __init__.py:43 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:29:24 [voicebot.langgraph       ] INFO    __init__.py:44 — [LANGGRAPH] Input: 'Number one, today is March 20th.'
+13:29:24 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:29:24 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:29:24 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:29:24 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:29:24 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:29:26 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:29:26 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'I want you to find out.'
+13:29:26 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 5): 'I want you to find out.'
+13:29:26 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:29:26 [voicebot.langgraph       ] INFO    __init__.py:43 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:29:26 [voicebot.langgraph       ] INFO    __init__.py:44 — [LANGGRAPH] Input: 'I want you to find out.'
+13:29:27 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:29:27 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:29:27 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:29:27 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:29:27 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:29:29 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:29:29 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Top 10 fist.'
+13:29:29 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 7): 'Top 10 fist.'
+13:29:29 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:29:29 [voicebot.langgraph       ] INFO    __init__.py:43 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:29:29 [voicebot.langgraph       ] INFO    __init__.py:44 — [LANGGRAPH] Input: 'Top 10 fist.'
+13:29:30 [voicebot.langgraph       ] INFO    graph.py:89 — Supervisor routed to: search
+13:29:30 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:29:30 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:29:30 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:29:30 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:29:30 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:29:35 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:29:36 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:29:36 [voicebot.events          ] INFO    events.py:105 — STT transcript: ''
+13:29:44 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:29:45 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'historically notable events that occurred on this date in India. Number 2, I want you to find out protagonists that were central to these top 10 events.'
+13:29:45 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 9): 'historically notable events that occurred on this date in India. Number 2, I want you to find out protagonists that were central to these top 10 events.'
+13:29:45 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:29:45 [voicebot.langgraph       ] INFO    __init__.py:43 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:29:45 [voicebot.langgraph       ] INFO    __init__.py:44 — [LANGGRAPH] Input: 'historically notable events that occurred on this date in India. Number 2, I want you to find out protagonists that were central to these top 10 events.'
+13:29:46 [voicebot.langgraph       ] INFO    graph.py:89 — Supervisor routed to: search
+13:29:46 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:29:46 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:29:46 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:29:46 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:29:46 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:29:56 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:29:56 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'I want you to find out the astrologically predictions around these three, these top 10 events.'
+13:29:56 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 11): 'I want you to find out the astrologically predictions around these three, these top 10 events.'
+13:29:56 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:29:56 [voicebot.langgraph       ] INFO    __init__.py:43 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:29:56 [voicebot.langgraph       ] INFO    __init__.py:44 — [LANGGRAPH] Input: 'I want you to find out the astrologically predictions around these three, these top 10 events.'
+13:29:57 [voicebot.langgraph       ] INFO    graph.py:89 — Supervisor routed to: search
+13:30:00 [voicebot.langgraph       ] INFO    __init__.py:59 — [LANGGRAPH] stream_agent() complete (0 chars): ''
+13:30:00 [voicebot.orchestrator    ] INFO    orchestrator.py:163 — [PIPELINE] Progressive TTS complete: 0 chunks, 0 total chars, 3.63s
+13:30:00 [voicebot.orchestrator    ] WARNING orchestrator.py:170 — [PIPELINE] Empty agent response — no TTS chunks to send, resetting pipeline
+13:40:48 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+13:40:48 [voicebot.orchestrator    ] INFO    orchestrator.py:105 — Orchestrator shutting down
+13:40:48 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+13:40:48 [voicebot.main            ] INFO    main.py:71 — Voice Bot stopped
+13:41:04 [voicebot.audio           ] INFO    audio.py:95 — Audio started: 24000Hz, 1ch, chunk=1200
+13:41:04 [voicebot.session         ] INFO    session.py:89 — Connecting to Voice Live: https://mani-voice-live-bot-resource.services.ai.azure.com
+13:41:04 [voicebot.session         ] INFO    session.py:97 — Voice Live session configured (STT-only, create_response=False)
+13:41:04 [voicebot.main            ] INFO    main.py:61 — ============================================================
+13:41:04 [voicebot.main            ] INFO    main.py:62 — Voice Bot ready — speak into your microphone
+13:41:04 [voicebot.main            ] INFO    main.py:63 — Press Ctrl+C to stop
+13:41:04 [voicebot.main            ] INFO    main.py:64 — ============================================================
+13:41:04 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Hello! I'm your voice assistant. How can I help you today?...
+13:41:04 [voicebot.orchestrator    ] INFO    orchestrator.py:99 — [PIPELINE] Greeting TTS triggered
+13:41:04 [voicebot.orchestrator    ] INFO    orchestrator.py:101 — Orchestrator running — speak into your microphone
+13:41:04 [voicebot.audio           ] INFO    audio.py:150 — Mic capture started
+13:41:04 [voicebot.events          ] INFO    events.py:81 — Event dispatcher started
+13:41:04 [voicebot.events          ] INFO    events.py:85 — Session created
+13:41:04 [voicebot.events          ] INFO    events.py:88 — Session updated
+13:41:05 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PLAYBACK] First audio delta received — playback starting
+13:41:05 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+13:41:05 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Hello! I'm your voice assistant. How can I help you today?"
+13:41:05 [voicebot.events          ] INFO    events.py:132 — Response complete
+13:41:05 [voicebot.orchestrator    ] INFO    orchestrator.py:261 — [PIPELINE] All TTS chunks complete — ready for next input
+13:41:10 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:41:12 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:41:12 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Hi, how are you doing?'
+13:41:12 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 1): 'Hi, how are you doing?'
+13:41:12 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:41:12 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:41:12 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: 'Hi, how are you doing?'
+13:41:14 [voicebot.langgraph       ] INFO    graph.py:89 — Supervisor routed to: general
+13:41:14 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 1] TTS triggered at +2.52s (6 chars): Hello!...
+13:41:14 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Hello!...
+13:41:15 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PLAYBACK] First audio delta received — playback starting
+13:41:15 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+13:41:15 [voicebot.events          ] INFO    events.py:128 — TTS spoke: 'Hello!'
+13:41:15 [voicebot.events          ] INFO    events.py:132 — Response complete
+13:41:15 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 2] TTS triggered at +3.11s (27 chars): I'm here and ready to help....
+13:41:15 [voicebot.session         ] INFO    session.py:111 — TTS trigger: I'm here and ready to help....
+13:41:16 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+13:41:16 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "I'm here and ready to help."
+13:41:16 [voicebot.events          ] INFO    events.py:132 — Response complete
+13:41:16 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 3] TTS triggered at +3.80s (27 chars): How can I assist you today?...
+13:41:16 [voicebot.session         ] INFO    session.py:111 — TTS trigger: How can I assist you today?...
+13:41:16 [voicebot.langgraph       ] INFO    __init__.py:67 — [LANGGRAPH] stream_agent() complete (62 chars): "Hello! I'm here and ready to help. How can I assist you today?"
+13:41:16 [voicebot.orchestrator    ] INFO    orchestrator.py:163 — [PIPELINE] Progressive TTS complete: 3 chunks, 62 total chars, 3.81s
+13:41:16 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+13:41:16 [voicebot.events          ] INFO    events.py:128 — TTS spoke: 'How can I assist you today?'
+13:41:16 [voicebot.events          ] INFO    events.py:132 — Response complete
+13:41:16 [voicebot.orchestrator    ] INFO    orchestrator.py:261 — [PIPELINE] All TTS chunks complete — ready for next input
+13:41:23 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:41:25 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:41:25 [voicebot.events          ] INFO    events.py:105 — STT transcript: "Today's March 20th."
+13:41:25 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 2): "Today's March 20th."
+13:41:25 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:41:25 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:41:25 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: "Today's March 20th."
+13:41:25 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:41:25 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:41:25 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:41:25 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:41:25 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:41:29 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:41:30 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'I want you to do these three things. I want you to look at.'
+13:41:30 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 4): 'I want you to do these three things. I want you to look at.'
+13:41:30 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:41:30 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:41:30 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: 'I want you to do these three things. I want you to look at.'
+13:41:30 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:41:30 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:41:30 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:41:30 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:41:30 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:41:32 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:41:32 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Top 10 historical events.'
+13:41:32 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 6): 'Top 10 historical events.'
+13:41:32 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:41:32 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:41:32 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: 'Top 10 historical events.'
+13:41:33 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:41:33 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:41:33 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:41:33 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:41:33 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:41:35 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:41:35 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:41:35 [voicebot.events          ] INFO    events.py:105 — STT transcript: ''
+13:41:55 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:41:56 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'occurred on March 20th in India. Number two, I want you to find out central figures, protagonists for these top 10 events. Number three, I want you to find out gonestrologically whether there were predictions around these top 10 events. These are the three things I want you to do.'
+13:41:56 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 8): 'occurred on March 20th in India. Number two, I want you to find out central figures, protagonists for these top 10 events. Number three, I want you to find out gonestrologically whether there were predictions around these top 10 events. These are the three things I want you to do.'
+13:41:56 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:41:56 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:41:56 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: 'occurred on March 20th in India. Number two, I want you to find out central figures, protagonists for these top 10 events. Number three, I want you to find out gonestrologically whether there were predictions around these top 10 events. These are the three things I want you to do.'
+13:41:57 [voicebot.langgraph       ] INFO    graph.py:89 — Supervisor routed to: search
+13:41:59 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 1] TTS triggered at +3.33s (86 chars): I wasn't able to find specific historical events that occurred on March 20th in ...
+13:41:59 [voicebot.session         ] INFO    session.py:111 — TTS trigger: I wasn't able to find specific historical events that occurred on March 20th in ...
+13:41:59 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 2] TTS triggered at +3.60s (145 chars): You might consider looking into general historical timelines or significant even...
+13:41:59 [voicebot.session         ] INFO    session.py:111 — TTS trigger: You might consider looking into general historical timelines or significant even...
+13:41:59 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 3] TTS triggered at +3.74s (85 chars): If you have any other questions or need further assistance, feel free to let me ...
+13:41:59 [voicebot.session         ] INFO    session.py:111 — TTS trigger: If you have any other questions or need further assistance, feel free to let me ...
+13:41:59 [voicebot.langgraph       ] INFO    __init__.py:67 — [LANGGRAPH] stream_agent() complete (319 chars): "I wasn't able to find specific historical events that occurred on March 20th in India. You might consider looking into general historical timelines or significant events around this date from reliable historical sources or archives.\n\nIf you have any other questions or need further assistance, feel free to let me know!"
+13:41:59 [voicebot.orchestrator    ] INFO    orchestrator.py:163 — [PIPELINE] Progressive TTS complete: 3 chunks, 319 total chars, 3.76s
+13:42:00 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PLAYBACK] First audio delta received — playback starting
+13:42:00 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+13:42:00 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "I wasn't able to find specific historical events that occurred on March 20th in India."
+13:42:00 [voicebot.events          ] INFO    events.py:132 — Response complete
+13:42:13 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:42:13 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:42:13 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:42:13 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:42:14 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:42:14 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Why not?'
+13:42:14 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 10): 'Why not?'
+13:42:14 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:42:14 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:42:14 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: 'Why not?'
+13:42:15 [voicebot.langgraph       ] INFO    graph.py:89 — Supervisor routed to: search
+13:42:17 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 1] TTS triggered at +3.34s (173 chars): It seems there isn't a specific source or compilation detailing historical event...
+13:42:17 [voicebot.session         ] INFO    session.py:111 — TTS trigger: It seems there isn't a specific source or compilation detailing historical event...
+13:42:18 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 2] TTS triggered at +3.68s (175 chars): Historical events on specific dates may not always have a comprehensive list rea...
+13:42:18 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Historical events on specific dates may not always have a comprehensive list rea...
+13:42:18 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 3] TTS triggered at +3.89s (121 chars): For detailed historical data, you might need to consult specialized historical d...
+13:42:18 [voicebot.session         ] INFO    session.py:111 — TTS trigger: For detailed historical data, you might need to consult specialized historical d...
+13:42:18 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PLAYBACK] First audio delta received — playback starting
+13:42:19 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+13:42:19 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "It seems there isn't a specific source or compilation detailing historical events specifically on March 20th in India available directly from my current search capabilities."
+13:42:19 [voicebot.events          ] INFO    events.py:132 — Response complete
+13:42:19 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 4] TTS triggered at +4.73s (58 chars): If there's anything else you want to explore, let me know!...
+13:42:19 [voicebot.session         ] INFO    session.py:111 — TTS trigger: If there's anything else you want to explore, let me know!...
+13:42:19 [voicebot.langgraph       ] INFO    __init__.py:67 — [LANGGRAPH] stream_agent() complete (532 chars): "It seems there isn't a specific source or compilation detailing historical events specifically on March 20th in India available directly from my current search capabilities. Historical events on specific dates may not always have a comprehensive list readily available, especially if they are not widely recognized or documented in popular archives. \n\nFor detailed historical data, you might need to consult specialized historical databases, archives, or library resources. If there's anything else you want to explore, let me know!"
+13:42:19 [voicebot.orchestrator    ] INFO    orchestrator.py:163 — [PIPELINE] Progressive TTS complete: 4 chunks, 532 total chars, 4.73s
+13:42:21 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+13:42:21 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "If you'd like, I can try to find general historical events in India and check if they occurred on March 20th, or guide you on how to locate such information from a source or database. Let me know how you'd like to proceed!"
+13:42:21 [voicebot.events          ] INFO    events.py:132 — Response complete
+13:42:43 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:42:43 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:42:43 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:42:43 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:42:44 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:42:44 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'See the difference.'
+13:42:44 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 12): 'See the difference.'
+13:42:44 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:42:44 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:42:44 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: 'See the difference.'
+13:42:44 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:42:44 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:42:44 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:42:44 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:42:44 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:42:50 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:42:50 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'And then cross-pollinate that with the central figures, and then also cross-pollinate that with the...'
+13:42:50 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 14): 'And then cross-pollinate that with the central figures, and then also cross-pollinate that with the...'
+13:42:50 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:42:50 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:42:50 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: 'And then cross-pollinate that with the central figures, and then also cross-pollinate that with the...'
+13:42:51 [voicebot.langgraph       ] INFO    graph.py:89 — Supervisor routed to: search
+13:42:52 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+13:42:52 [voicebot.orchestrator    ] INFO    orchestrator.py:216 — [BARGE-IN] User interrupted — cancelling response and clearing buffers
+13:42:52 [voicebot.audio           ] INFO    audio.py:124 — Audio playback interrupted and queue cleared
+13:42:52 [voicebot.orchestrator    ] INFO    orchestrator.py:240 — [BARGE-IN] Interruption handled — ready for new input
+13:42:52 [voicebot.orchestrator    ] INFO    orchestrator.py:178 — [PIPELINE] Processing cancelled by barge-in
+13:42:54 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+13:42:54 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'To the key astrological predictions.'
+13:42:54 [voicebot.orchestrator    ] INFO    orchestrator.py:120 — [STT] Transcript received (turn 16): 'To the key astrological predictions.'
+13:42:54 [voicebot.orchestrator    ] INFO    orchestrator.py:129 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+13:42:54 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+13:42:54 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: 'To the key astrological predictions.'
+13:42:55 [voicebot.langgraph       ] INFO    graph.py:89 — Supervisor routed to: search
+13:42:57 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 1] TTS triggered at +3.30s (92 chars): I'm unable to find specific historical events that occurred on March 20th in Ind...
+13:42:57 [voicebot.session         ] INFO    session.py:111 — TTS trigger: I'm unable to find specific historical events that occurred on March 20th in Ind...
+13:42:58 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 2] TTS triggered at +3.57s (99 chars): This could be due to the lack of a widely recognized or documented list specific...
+13:42:58 [voicebot.session         ] INFO    session.py:111 — TTS trigger: This could be due to the lack of a widely recognized or documented list specific...
+13:42:58 [voicebot.orchestrator    ] INFO    orchestrator.py:205 — [CHUNK 3] TTS triggered at +3.68s (116 chars): If you are interested in general historical events or need assistance with somet...
+13:42:58 [voicebot.session         ] INFO    session.py:111 — TTS trigger: If you are interested in general historical events or need assistance with somet...
+13:42:58 [voicebot.langgraph       ] INFO    __init__.py:67 — [LANGGRAPH] stream_agent() complete (311 chars): "I'm unable to find specific historical events that occurred on March 20th in India directly. This could be due to the lack of a widely recognized or documented list specifically for that date. \n\nIf you are interested in general historical events or need assistance with something else, feel free to let me know!"
+13:42:58 [voicebot.orchestrator    ] INFO    orchestrator.py:163 — [PIPELINE] Progressive TTS complete: 3 chunks, 311 total chars, 3.71s
+13:42:58 [voicebot.orchestrator    ] INFO    orchestrator.py:81 — [PLAYBACK] First audio delta received — playback starting
+13:43:02 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+13:43:02 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Understood! Here's what I'll aim to do:\n\n1. **Identify Top 10 Historical Events on March 20th in India**: Pinpoint significant occurrences on this date, if available.\n2. **Central Figures**: Highlight key individuals associated with these events.\n3. **Astrological Predictions**: Check if there were any astrological predictions tied to these events.\n\nI'll attempt a thorough analysis across these three dimensions. Let me get started!\nI'm unable to find specific historical events that occurred on March 20th in India directly."
+13:43:02 [voicebot.events          ] INFO    events.py:132 — Response complete
+13:48:36 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+13:48:36 [voicebot.orchestrator    ] INFO    orchestrator.py:105 — Orchestrator shutting down
+13:48:36 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+13:48:36 [voicebot.main            ] INFO    main.py:71 — Voice Bot stopped
+14:17:57 [voicebot.audio           ] INFO    audio.py:95 — Audio started: 24000Hz, 1ch, chunk=1200
+14:17:57 [voicebot.session         ] INFO    session.py:89 — Connecting to Voice Live: https://mani-voice-live-bot-resource.services.ai.azure.com
+14:17:58 [voicebot.session         ] INFO    session.py:97 — Voice Live session configured (STT-only, create_response=False)
+14:17:58 [voicebot.main            ] INFO    main.py:61 — ============================================================
+14:17:58 [voicebot.main            ] INFO    main.py:62 — Voice Bot ready — speak into your microphone
+14:17:58 [voicebot.main            ] INFO    main.py:63 — Press Ctrl+C to stop
+14:17:58 [voicebot.main            ] INFO    main.py:64 — ============================================================
+14:17:58 [voicebot.session         ] INFO    session.py:111 — TTS trigger: Hello! I'm your voice assistant. How can I help you today?...
+14:17:58 [voicebot.orchestrator    ] INFO    orchestrator.py:103 — [PIPELINE] Greeting TTS triggered
+14:17:58 [voicebot.orchestrator    ] INFO    orchestrator.py:105 — Orchestrator running — speak into your microphone
+14:17:58 [voicebot.audio           ] INFO    audio.py:150 — Mic capture started
+14:17:58 [voicebot.events          ] INFO    events.py:81 — Event dispatcher started
+14:17:58 [voicebot.events          ] INFO    events.py:85 — Session created
+14:17:58 [voicebot.events          ] INFO    events.py:88 — Session updated
+14:17:59 [voicebot.orchestrator    ] INFO    orchestrator.py:85 — [PLAYBACK] First audio delta received — playback starting
+14:17:59 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+14:17:59 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Hello! I'm your voice assistant. How can I help you today?"
+14:17:59 [voicebot.events          ] INFO    events.py:132 — Response complete
+14:17:59 [voicebot.orchestrator    ] INFO    orchestrator.py:271 — [PIPELINE] All TTS chunks complete — ready for next input
+14:18:05 [voicebot.events          ] INFO    events.py:92 — Speech started (VAD detected)
+14:18:17 [voicebot.events          ] INFO    events.py:97 — Speech stopped (VAD end-of-turn)
+14:18:18 [voicebot.events          ] INFO    events.py:105 — STT transcript: 'Can you tell me about March 20th? Any historical events that happened on March 20th? Look for India specialists.'
+14:18:18 [voicebot.orchestrator    ] INFO    orchestrator.py:124 — [STT] Transcript received (turn 1): 'Can you tell me about March 20th? Any historical events that happened on March 20th? Look for India specialists.'
+14:18:18 [voicebot.orchestrator    ] INFO    orchestrator.py:133 — [PIPELINE] Starting progressive TTS — streaming from LangGraph
+14:18:18 [voicebot.langgraph       ] INFO    __init__.py:48 — [LANGGRAPH] stream_agent() called — starting streaming from supervisor graph
+14:18:18 [voicebot.langgraph       ] INFO    __init__.py:49 — [LANGGRAPH] Input: 'Can you tell me about March 20th? Any historical events that happened on March 20th? Look for India specialists.'
+14:18:19 [voicebot.langgraph       ] INFO    graph.py:89 — Supervisor routed to: search
+14:18:21 [voicebot.orchestrator    ] INFO    orchestrator.py:210 — [CHUNK 1] TTS triggered at +3.20s (74 chars): I couldn't find specific historical events related to India on March 20th....
+14:18:21 [voicebot.session         ] INFO    session.py:111 — TTS trigger: I couldn't find specific historical events related to India on March 20th....
+14:18:21 [voicebot.orchestrator    ] INFO    orchestrator.py:85 — [PLAYBACK] First audio delta received — playback starting
+14:18:22 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+14:18:22 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "I couldn't find specific historical events related to India on March 20th."
+14:18:22 [voicebot.events          ] INFO    events.py:132 — Response complete
+14:18:22 [voicebot.orchestrator    ] INFO    orchestrator.py:271 — [PIPELINE] All TTS chunks complete — ready for next input
+14:18:22 [voicebot.orchestrator    ] INFO    orchestrator.py:210 — [CHUNK 2] TTS triggered at +4.06s (84 chars): If you have other queries or need information on different topics, feel free to ...
+14:18:22 [voicebot.session         ] INFO    session.py:111 — TTS trigger: If you have other queries or need information on different topics, feel free to ...
+14:18:22 [voicebot.langgraph       ] INFO    __init__.py:67 — [LANGGRAPH] stream_agent() complete (159 chars): "I couldn't find specific historical events related to India on March 20th. If you have other queries or need information on different topics, feel free to ask!"
+14:18:22 [voicebot.orchestrator    ] INFO    orchestrator.py:167 — [PIPELINE] Progressive TTS complete: 2 chunks, 159 total chars, 4.06s
+14:18:27 [voicebot.events          ] INFO    events.py:122 — TTS audio stream complete
+14:18:27 [voicebot.events          ] INFO    events.py:128 — TTS spoke: "Certainly! Here are some notable events that have occurred on March 20th, some of which relate to India:\n\n1. **1956 - Jawaharlal Nehru's Visit to Bhutan**: On March 20, 1956, India's first Prime Minister, Jawaharlal Nehru, visited Bhutan, marking a pivotal moment in strengthening diplomatic relations between the two nations.\n\n2. **2000 - Missionaries of Charity Declared as an NGO**: On this date, the charity organization founded by Mother Teresa, Missionaries of Charity, was formally recognized as a Non-Governmental Organization (NGO), continuing its charitable work throughout India and beyond.\n\nPlease let me know if you'd like more detailed information or other topics explored!"
+14:18:27 [voicebot.events          ] INFO    events.py:132 — Response complete
+14:18:27 [voicebot.orchestrator    ] INFO    orchestrator.py:271 — [PIPELINE] All TTS chunks complete — ready for next input
+14:19:33 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+14:19:33 [voicebot.orchestrator    ] INFO    orchestrator.py:109 — Orchestrator shutting down
+14:19:33 [voicebot.audio           ] INFO    audio.py:113 — Audio stopped
+14:19:33 [voicebot.main            ] INFO    main.py:71 — Voice Bot stopped
