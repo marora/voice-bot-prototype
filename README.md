@@ -34,11 +34,11 @@ No public Azure sample demonstrates `create_response=False` with semantic VAD an
                  │                 │ transcript                    │
                  │                 ▼                               │
                  │  ┌──────────────────────────────────────────┐  │
-                 │  │  LangGraph Supervisor Agent               │  │
-                 │  │  ┌──────────┐ ┌────────┐ ┌───────────┐  │  │
-                 │  │  │ Search   │ │ Calc   │ │ Weather   │  │  │
-                 │  │  │ Agent    │ │ Agent  │ │ Agent     │  │  │
-                 │  │  └──────────┘ └────────┘ └───────────┘  │  │
+│  │  │  LangGraph Supervisor Agent                          │  │
+                 │  │  ┌──────────┐ ┌────────┐ ┌───────────┐ ┌───────────┐  │  │
+                 │  │  │ Search   │ │ Calc   │ │ Weather   │ │ General   │  │  │
+                 │  │  │ Agent    │ │ Agent  │ │ Agent     │ │ Agent     │  │  │
+                 │  │  └──────────┘ └────────┘ └───────────┘ └───────────┘  │  │
                  │  └──────────────────────────────────────────┘  │
                  └─────────────────────────────────────────────────┘
 ```
@@ -48,7 +48,7 @@ No public Azure sample demonstrates `create_response=False` with semantic VAD an
 1. **Mic** captures audio and streams PCM16 to Voice Live via WebSocket.
 2. **Voice Live** runs semantic VAD to detect end-of-turn, then transcribes speech (`create_response=False` prevents auto-LLM).
 3. The **orchestrator** routes the transcript through the LangGraph supervisor, which delegates to the appropriate sub-agent (search, calculator, weather, or general).
-4. The **orchestrator** sends the response text to Voice Live via `response.create(instructions=text)`, which synthesizes and streams audio deltas to the speaker.
+4. The **orchestrator** streams the LangGraph response token-by-token, chunking at sentence boundaries, and sends each chunk to Voice Live via `response.create(instructions=chunk)` for progressive audio synthesis. Audio deltas stream to the speaker as each chunk is synthesized.
 5. If the user speaks during playback (barge-in), the response is cancelled and a new turn begins.
 
 ## Prerequisites
@@ -150,10 +150,12 @@ voice-bot-prototype/
 ├── requirements.txt       # Python dependencies
 ├── .env.example           # Environment variable template
 ├── voice_live/
+│   ├── __init__.py        # Package exports (create_session, trigger_tts)
 │   ├── session.py         # Voice Live session setup (create_response=False)
 │   ├── audio.py           # PyAudio mic capture + speaker playback
 │   └── events.py          # Server event dispatcher with callbacks
 └── langgraph_agent/
+    ├── __init__.py         # Public API (stream_agent, invoke_agent)
     ├── graph.py            # Supervisor StateGraph + sub-agent routing
     └── tools.py            # Sample tools (search, calculator, weather stubs)
 ```
@@ -169,7 +171,7 @@ This prototype uses **Path A**, a single Voice Live WebSocket for both STT and T
 | **Connections** | Single WebSocket | Two WebSockets (Voice Live + Speech SDK) |
 | **Barge-in** | Native support | Manual implementation needed |
 | **Cost** | Higher (Voice Live model for TTS) | Lower (Azure Neural TTS pricing) |
-| **Latency** | Model inference per TTS call | ~200-500ms first byte with text streaming |
+| **Latency** | Model inference per chunk (progressive chunking reduces time-to-first-audio) | ~200-500ms first byte with text streaming |
 | **Complexity** | Low | Medium |
 
 ### Path B Production Upgrade

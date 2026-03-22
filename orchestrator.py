@@ -48,7 +48,8 @@ class Orchestrator:
     Lifecycle of a single conversational turn:
         1. Voice Live fires ``on_transcript`` with the user's utterance.
         2. ``_handle_transcript`` streams the text through LangGraph.
-        3. The full LangGraph response is sent to Voice Live via TTS.
+        3. LangGraph response tokens are chunked at sentence boundaries
+           and sent to Voice Live progressively via TTS.
         4. Audio deltas arrive and are enqueued for playback.
         5. ``on_response_done`` marks the turn complete.
 
